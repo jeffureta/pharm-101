@@ -1,7 +1,7 @@
 /**
- * LITFL Pharm 101: Glycerol Trinitrate (GTN)
+ * Pharm 101: Glycerol Trinitrate (GTN)
  * Google Material Design 3 Mobile-First Vanilla Web App
- * Based on Emergency Pharmacology article by Dr. Robert Buttner
+ * Personal Clinical Pharmacology Reference
  */
 
 (() => {
@@ -74,7 +74,7 @@
   const restartQuizBtn = document.getElementById('restartQuizBtn');
 
   // =========================================================================
-  // 2. Quiz Data (ACEM Primary Pharmacology Questions)
+  // 2. Quiz Data (Clinical Pharmacology Self-Assessment)
   // =========================================================================
   const quizData = [
     {
@@ -379,7 +379,7 @@
           <span>GTN CONTRAINDICATED (HIGH RISK)</span>
         </div>
         <h4>DO NOT ADMINISTER GTN</h4>
-        <p>The patient has one or more absolute contraindications based on LITFL / ACEM guidelines:</p>
+        <p>The patient has one or more absolute clinical contraindications:</p>
         <ul>${issues.map(item => `<li>${item}</li>`).join('')}</ul>
       `;
     } else if (severity === 'caution') {

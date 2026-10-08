@@ -1,6 +1,6 @@
 # Pharm 101: Glycerol Trinitrate (GTN)
 
-> **Mobile-first Google Material Design Web App** based on the emergency pharmacology guide by **Dr. Robert Buttner** published on [Life in the Fast Lane (LITFL) Top 200 Drugs](https://litfl.com/pharm-101-gtn/).
+> **Mobile-first Google Material Design Web App** for personal clinical pharmacology reference, emergency decision support, and self-assessment.
 
 ---
 
@@ -47,10 +47,51 @@
 - **Interactive Clinical Decision Support Tools:**
   - **Bedside Safety & Red Flag Screener:** Evaluates SBP, heart rate, RV MI risk, fixed output obstructions, and PDE-5 inhibitor co-ingestion with immediate visual alerts (Red Alert / Amber Caution / Green Safe).
   - **8-Hour Nitrate Tolerance Planner:** Computes on/off scheduling to preserve vascular sulfhydryl reserves.
-  - **ACEM Pharm 101 Self-Assessment Quiz:** 5 questions with instantaneous rationale feedback and score tracking.
-  - **Card Bookmarks:** Save high-yield cards to `localStorage` for rapid exam review.
+  - **Pharm 101 Self-Assessment Quiz:** 5 questions with instantaneous rationale feedback and score tracking.
+  - **Card Bookmarks:** Save high-yield cards to `localStorage` for rapid review.
   - **Material Dark & Light Theme:** Automatic OS color-scheme detection with manual toggle.
 - **100% Vanilla Tech Stack:** Latest semantic HTML5, modern CSS3 with custom properties, and vanilla ES6+ JavaScript. No build step or heavy framework dependencies required.
+
+---
+
+## 🛠️ Prompt Reference & Template Guide for Future Drug Pages
+
+This section serves as a permanent reference for creating additional drug pages in this series (e.g. Adrenaline, Amiodarone, Propofol, Salbutamol, Ketamine, Morphine) formatted for personal clinical use.
+
+### 1. Generation Prompts Reference
+
+#### Initial Build Prompt:
+> *"Open chrome and look at `<URL-OF-MEDICAL-ARTICLE>`. I want you to get the main information of the article and apply a google like design. Moreover, make sure the web app has a mobile first approach. One more thing, use the latest vanilla version of HTML and JavaScript to build it. As far as design goes, you can use Material CSS to make it look like a Google Web App."*
+
+#### Personalization & Cleanup Prompt (The "Clean Personal Use" Refinement):
+> *"Open Chrome and look at index.html. Edit the app and take out the following things:*
+> *1. Any word pattern like "LITFL TOP 200 Drugs"*
+> *2. The circle to the top right with "RB" on it*
+> *3. Anything to do with "Dr. Robert Buttner"*
+> *4. Anything to do with "ACEM TOP 200 Drugs"*
+> *5. Remove the further reading section at the bottom of the app.*
+> *Basically, I want those removed because I would use this app for personal use. Lastly, edit README.md to add an entry in there about this prompt so that it could be referenced in the future whenever I would make another page like this."*
+
+---
+
+### 2. Standard Drug Page Blueprint & Checklist
+
+When building another drug page from an online reference or clinical textbook for personal use, ensure the following template rules are followed:
+
+| Component | Standard Implementation Pattern | Personalization Rule |
+| :--- | :--- | :--- |
+| **Top App Bar** | Sticky header with menu drawer button, search pill, theme toggle, and bookmark drawer. | **No author avatar circles** (e.g. no "RB" circle in the top right). Use clean branding: `Pharm 101 • Clinical Pharmacology`. |
+| **Hero Card** | Drug title, chemical name/aliases, key metric tiles (Class, Mechanism, Bioavailability, Half-life, Onset, Key Phenomenon). | **No external author citation banners** or website badges. Use generic tags like `Clinical Pharmacology • Basic Science`. |
+| **Pharmacodynamics** | Step-by-step visual cascade (Receptor/Enzyme $\rightarrow$ Second messenger $\rightarrow$ Cellular effect) + differential tissue/vascular actions. | Highlight direct physiological mechanism and clinical significance. |
+| **Pharmacokinetics** | Metric badges for ADME (Bioavailability, $t_{1/2}$, Onset, Duration, Metabolism, Excretion) + tolerance/tachyphylaxis box. | Focus on actionable bedside kinetics. |
+| **Clinical Indications** | Responsive card grid with icon tags (1st line, IV infusion, emergency bolus). | High-yield acute indications. |
+| **Adverse Effects** | List with warning color indicators and physiological explanations. | Extensions of primary pharmacology. |
+| **Contraindications / Red Flags** | High-contrast danger cards for absolute contraindications and preload/rate dependencies. | Flag critical drug-drug interactions (e.g. PDE-5 inhibitors) and preload dependencies. |
+| **Bedside Interactive Tool** | Form assessing hemodynamics (BP, HR, rhythm, specific contraindication checks) outputting immediate Red/Amber/Green alerts. | Keep interactive and practical for point-of-care assessment. |
+| **Specialized Drug Tool** | Drug-specific calculator (e.g., 8-Hour Drug-Free Window Planner for nitrates, Infusion Rate / Weight Calculator for inotropes). | Provide dynamic calculation with real-time DOM feedback. |
+| **Self-Assessment Quiz** | 5 high-yield multiple-choice questions with instant correct/incorrect feedback and rationale. | Keep questions clinical and concept-oriented. |
+| **Bottom Navigation Bar** | Mobile-first 5-tab thumb-friendly navigation (Summary, Dynamics, Kinetics, Safety, Quiz). | Essential for mobile viewport accessibility. |
+| **References / Citations** | **Omitted / Removed** for personal use copies. | Keep the app self-contained without external reading lists or author links. |
 
 ---
 
