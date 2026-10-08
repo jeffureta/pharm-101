@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="gtnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a73e8" />
+      <stop offset="100%" stop-color="#4285f4" />
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="url(#gtnGrad)"/>
+  <!-- Medical Capsule Pill in Google Material Style -->
+  <g transform="translate(24,24) rotate(45) translate(-12,-6)">
+    <rect x="0" y="0" width="12" height="12" rx="6" fill="#ffffff" opacity="0.95"/>
+    <rect x="12" y="0" width="12" height="12" rx="6" fill="#fbbc04"/>
+    <line x1="12" y1="0" x2="12" y2="12" stroke="#1a73e8" stroke-width="1.5"/>
+  </g>
+</svg>

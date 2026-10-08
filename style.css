@@ -1,0 +1,1941 @@
+/* ==========================================================================
+   Google Material Design 3 (Material You) Mobile-First Stylesheet
+   LITFL Pharm 101 - Glycerol Trinitrate (GTN)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / MD3 Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* MD3 Color Palette - Light Theme */
+  --md-sys-color-primary: #1a73e8;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d3e3fd;
+  --md-sys-color-on-primary-container: #041e49;
+
+  --md-sys-color-secondary: #00639b;
+  --md-sys-color-secondary-container: #c2e7ff;
+  --md-sys-color-on-secondary-container: #001d32;
+
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #1f1f1f;
+  --md-sys-color-surface-variant: #f1f3f4;
+  --md-sys-color-on-surface-variant: #444746;
+  
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f8f9fa;
+  --md-sys-color-surface-container: #f0f4f9;
+  --md-sys-color-surface-container-high: #e9eef6;
+  --md-sys-color-surface-container-highest: #dfe3e8;
+
+  --md-sys-color-outline: #747775;
+  --md-sys-color-outline-variant: #c4c7c5;
+
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-error-container: #f9dedc;
+  --md-sys-color-on-error: #ffffff;
+
+  --md-sys-color-warning: #b06000;
+  --md-sys-color-warning-container: #ffe0b2;
+
+  --md-sys-color-success: #137333;
+  --md-sys-color-success-container: #ceead6;
+
+  /* Typography */
+  --font-brand: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* Elevations / Box Shadows */
+  --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --md-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+  --md-elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.30);
+
+  /* Shape tokens */
+  --shape-corner-xs: 4px;
+  --shape-corner-s: 8px;
+  --shape-corner-m: 12px;
+  --shape-corner-l: 16px;
+  --shape-corner-xl: 28px;
+  --shape-corner-full: 9999px;
+
+  /* Nav dimensions */
+  --header-height: 64px;
+  --bottom-nav-height: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Transition speeds */
+  --transition-standard: cubic-bezier(0.2, 0, 0, 1) 200ms;
+  --transition-decelerate: cubic-bezier(0, 0, 0.2, 1) 250ms;
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+  --md-sys-color-primary: #a8c7fa;
+  --md-sys-color-on-primary: #062e6f;
+  --md-sys-color-primary-container: #0842a0;
+  --md-sys-color-on-primary-container: #d3e3fd;
+
+  --md-sys-color-secondary: #7fcfff;
+  --md-sys-color-secondary-container: #004a77;
+  --md-sys-color-on-secondary-container: #c2e7ff;
+
+  --md-sys-color-surface: #131314;
+  --md-sys-color-on-surface: #e3e3e3;
+  --md-sys-color-surface-variant: #282a2c;
+  --md-sys-color-on-surface-variant: #c4c7c5;
+
+  --md-sys-color-surface-container-lowest: #0e0e0e;
+  --md-sys-color-surface-container-low: #1b1b1f;
+  --md-sys-color-surface-container: #1e1f20;
+  --md-sys-color-surface-container-high: #28292a;
+  --md-sys-color-surface-container-highest: #333537;
+
+  --md-sys-color-outline: #8e918f;
+  --md-sys-color-outline-variant: #444746;
+
+  --md-sys-color-error: #f2b8b5;
+  --md-sys-color-error-container: #8c1d18;
+  --md-sys-color-on-error: #601410;
+
+  --md-sys-color-warning: #ffb74d;
+  --md-sys-color-warning-container: #7f3d00;
+
+  --md-sys-color-success: #81c995;
+  --md-sys-color-success-container: #0d652d;
+
+  --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.4), 0px 1px 2px 0px rgba(0, 0, 0, 0.6);
+  --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.45), 0px 1px 2px 0px rgba(0, 0, 0, 0.6);
+  --md-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.5), 0px 1px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Mobile-First Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  line-height: 1.5;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 24px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   3. Top Google App Bar
+   -------------------------------------------------------------------------- */
+.md3-app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 12px;
+  background-color: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  transition: background-color var(--transition-standard), box-shadow var(--transition-standard);
+}
+
+.md3-app-bar.scrolled {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.app-bar-start {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--shape-corner-m);
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-glyph {
+  font-size: 22px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  letter-spacing: -0.2px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.brand-subtitle {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--md-sys-color-outline);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Search Wrapper (Hidden on very small mobile until expanded, or responsive) */
+.app-search-wrapper {
+  flex: 1;
+  max-width: 580px;
+  margin: 0 12px;
+  display: none; /* Desktop/tablet or opened via search trigger */
+}
+
+@media (min-width: 680px) {
+  .app-search-wrapper {
+    display: block;
+  }
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-high);
+  border-radius: var(--shape-corner-full);
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  transition: all var(--transition-standard);
+}
+
+.search-box:focus-within {
+  background-color: var(--md-sys-color-surface);
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 1px 6px rgba(26, 115, 232, 0.2);
+}
+
+.search-icon {
+  color: var(--md-sys-color-outline);
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.search-box input::placeholder {
+  color: var(--md-sys-color-outline);
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--md-sys-color-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+.search-clear-btn:hover {
+  background-color: rgba(0,0,0,0.06);
+}
+
+.app-bar-end {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* User avatar */
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-brand);
+  margin-left: 4px;
+}
+
+/* Material Icon Buttons */
+.md3-icon-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-standard);
+}
+
+.md3-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+body.dark-theme .md3-icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.badge-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-error);
+}
+
+/* --------------------------------------------------------------------------
+   4. Filter Chips Bar (Google-Style Horizontal Pills)
+   -------------------------------------------------------------------------- */
+.md3-chip-bar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 95;
+  background-color: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  padding: 8px 12px;
+  overflow: hidden;
+}
+
+.chip-scroller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+}
+
+.chip-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.md3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--shape-corner-s);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--font-brand);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-standard);
+  user-select: none;
+}
+
+.md3-chip .chip-icon {
+  font-size: 17px;
+  color: var(--md-sys-color-outline);
+}
+
+.md3-chip:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.md3-chip.active {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.md3-chip.active .chip-icon {
+  color: var(--md-sys-color-on-primary-container);
+}
+
+/* --------------------------------------------------------------------------
+   5. Side Navigation Drawer
+   -------------------------------------------------------------------------- */
+.md3-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background-color: var(--md-sys-color-surface);
+  z-index: 200;
+  box-shadow: var(--md-elevation-3);
+  transform: translateX(-100%);
+  transition: transform var(--transition-decelerate);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.md3-nav-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 190;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-standard);
+}
+
+.drawer-scrim.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.drawer-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawer-header-brand h3 {
+  font-family: var(--font-brand);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.drawer-header-brand p {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-outline);
+}
+
+.drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawer-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--md-sys-color-outline);
+  padding: 12px 12px 4px;
+  letter-spacing: 0.8px;
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background-color var(--transition-standard);
+}
+
+.drawer-item:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  text-decoration: none;
+}
+
+.drawer-item.active {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  font-weight: 600;
+}
+
+.drawer-divider {
+  height: 1px;
+  background-color: var(--md-sys-color-outline-variant);
+  margin: 8px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Main Content Area & Responsive Grid
+   -------------------------------------------------------------------------- */
+.md3-main-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .md3-main-container {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+}
+
+/* Active Search Banner */
+.search-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  padding: 8px 16px;
+  border-radius: var(--shape-corner-m);
+  font-size: 0.88rem;
+}
+
+/* Section Wrapper */
+.card-section {
+  width: 100%;
+  transition: opacity var(--transition-standard), transform var(--transition-standard);
+}
+
+.card-section.hidden-by-filter {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Material 3 Cards (Tonal Elevation & Rounded Shapes)
+   -------------------------------------------------------------------------- */
+.md3-card {
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--shape-corner-xl);
+  padding: 18px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard);
+}
+
+@media (min-width: 600px) {
+  .md3-card {
+    padding: 24px;
+  }
+}
+
+.md3-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card-top-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-icon {
+  font-size: 28px;
+  padding: 8px;
+  border-radius: var(--shape-corner-m);
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.section-icon.color-blue {
+  color: #1a73e8;
+  background-color: #e8f0fe;
+}
+.section-icon.color-teal {
+  color: #00796b;
+  background-color: #e0f2f1;
+}
+.section-icon.color-indigo {
+  color: #3f51b5;
+  background-color: #e8eaf6;
+}
+.section-icon.color-amber {
+  color: #d97706;
+  background-color: #fef3c7;
+}
+.section-icon.color-danger {
+  color: #d93025;
+  background-color: #fce8e6;
+}
+.section-icon.color-green {
+  color: #188038;
+  background-color: #e6f4ea;
+}
+.section-icon.color-purple {
+  color: #7b1fa2;
+  background-color: #f3e5f5;
+}
+
+body.dark-theme .section-icon.color-blue { background-color: #174ea6; color: #8ab4f8; }
+body.dark-theme .section-icon.color-teal { background-color: #004d40; color: #80cbc4; }
+body.dark-theme .section-icon.color-indigo { background-color: #283593; color: #9fa8da; }
+body.dark-theme .section-icon.color-amber { background-color: #78350f; color: #fde68a; }
+body.dark-theme .section-icon.color-danger { background-color: #7c2d12; color: #fca5a5; }
+body.dark-theme .section-icon.color-green { background-color: #0d652d; color: #81c995; }
+body.dark-theme .section-icon.color-purple { background-color: #4a148c; color: #ce93d8; }
+
+.card-title {
+  font-family: var(--font-brand);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.card-subhead {
+  font-size: 0.82rem;
+  color: var(--md-sys-color-outline);
+  margin-top: 2px;
+}
+
+/* Bookmark Active State */
+.bookmark-card-btn.bookmarked {
+  color: var(--md-sys-color-primary);
+}
+.bookmark-card-btn.bookmarked .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* --------------------------------------------------------------------------
+   8. Specific Cards Details
+   -------------------------------------------------------------------------- */
+
+/* Hero Card */
+.hero-card {
+  background: linear-gradient(180deg, var(--md-sys-color-surface) 0%, var(--md-sys-color-surface-container) 100%);
+  border: 1px solid var(--md-sys-color-primary-container);
+}
+
+.hero-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hero-chip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  padding: 4px 10px;
+  border-radius: var(--shape-corner-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-brand);
+}
+
+.hero-chip-badge .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.hero-title {
+  font-family: var(--font-brand);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+  line-height: 1.15;
+  margin-top: 6px;
+}
+
+@media (min-width: 600px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+.hero-subtitle {
+  font-size: 0.88rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: 4px;
+}
+
+/* Quick Facts Grid */
+.quick-facts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+@media (min-width: 480px) {
+  .quick-facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .quick-facts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.fact-tile {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--shape-corner-m);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fact-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--md-sys-color-outline);
+}
+
+.fact-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  margin-top: 2px;
+}
+
+.fact-val.highlight-blue {
+  color: var(--md-sys-color-primary);
+}
+
+.fact-val.highlight-amber {
+  color: var(--md-sys-color-warning);
+}
+
+/* Author Citation Banner */
+.author-citation-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.author-avatar-img {
+  color: var(--md-sys-color-outline);
+  display: flex;
+}
+.author-avatar-img .material-symbols-outlined {
+  font-size: 38px;
+}
+
+.author-name {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.author-creds {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-outline);
+}
+
+.author-source {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-primary);
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Pharmacodynamics Pathway Stepper
+   -------------------------------------------------------------------------- */
+.pathway-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 14px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-l);
+}
+
+.pathway-step {
+  display: flex;
+  gap: 12px;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content strong {
+  font-family: var(--font-brand);
+  font-size: 0.9rem;
+  display: block;
+}
+
+.step-content p {
+  font-size: 0.82rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: 2px;
+}
+
+.step-connector {
+  width: 2px;
+  height: 12px;
+  background-color: var(--md-sys-color-outline-variant);
+  margin-left: 13px;
+}
+
+/* Dose Dynamics Columns */
+.dose-dynamics-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+@media (min-width: 680px) {
+  .dose-dynamics-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dose-column {
+  border-radius: var(--shape-corner-l);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dose-column.veno-col {
+  background-color: #e8f0fe;
+  border: 1px solid #c2e7ff;
+}
+
+.dose-column.arterio-col {
+  background-color: #fce8e6;
+  border: 1px solid #fad2cf;
+}
+
+body.dark-theme .dose-column.veno-col {
+  background-color: #0b2548;
+  border-color: #174ea6;
+}
+
+body.dark-theme .dose-column.arterio-col {
+  background-color: #3c1618;
+  border-color: #8c1d18;
+}
+
+.dose-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.dose-header h4 {
+  font-family: var(--font-brand);
+  font-size: 1rem;
+}
+
+.dose-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--shape-corner-xs);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.veno-col .dose-tag {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
+.arterio-col .dose-tag {
+  background-color: #d93025;
+  color: #fff;
+}
+
+.clean-bullet-list {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.pearl-callout {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background-color: var(--md-sys-color-surface-container-high);
+  border-left: 4px solid var(--md-sys-color-primary);
+  border-radius: 0 var(--shape-corner-m) var(--shape-corner-m) 0;
+  margin-top: 14px;
+}
+
+.pearl-icon {
+  color: var(--md-sys-color-primary);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.pearl-text {
+  font-size: 0.85rem;
+}
+
+.pearl-subtext {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-outline);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   10. Pharmacokinetics Metrics
+   -------------------------------------------------------------------------- */
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 520px) {
+  .metric-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.metric-card {
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-l);
+  padding: 14px;
+  text-align: center;
+}
+
+.metric-number {
+  font-family: var(--font-brand);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+}
+
+.metric-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.metric-desc {
+  font-size: 0.72rem;
+  color: var(--md-sys-color-outline);
+  margin-top: 4px;
+}
+
+.info-block {
+  padding: 14px;
+  background-color: var(--md-sys-color-surface-container-low);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--shape-corner-m);
+  margin-bottom: 16px;
+}
+
+.block-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.block-title .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--md-sys-color-primary);
+}
+
+.info-block p {
+  font-size: 0.85rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Tachyphylaxis Banner */
+.tachyphylaxis-banner {
+  background-color: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: var(--shape-corner-l);
+  padding: 16px;
+}
+
+body.dark-theme .tachyphylaxis-banner {
+  background-color: #332607;
+  border-color: #614a0f;
+}
+
+.tachy-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.tachy-icon {
+  font-size: 26px;
+  color: #f57f17;
+}
+
+.tachy-header h4 {
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.tachy-sub {
+  font-size: 0.72rem;
+  color: var(--md-sys-color-outline);
+  font-weight: 500;
+}
+
+.tachy-body p {
+  font-size: 0.84rem;
+  margin-bottom: 6px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.solution-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--shape-corner-m);
+  padding: 8px 12px;
+  font-size: 0.84rem;
+  margin-top: 10px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.solution-pill .material-symbols-outlined {
+  color: var(--md-sys-color-success);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Clinical Indications Grid
+   -------------------------------------------------------------------------- */
+.indications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .indications-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.indication-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-l);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  transition: transform var(--transition-standard);
+}
+
+.indication-card.full-span {
+  grid-column: 1 / -1;
+}
+
+.indication-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--shape-corner-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.indication-icon-wrap.bg-red { background: linear-gradient(135deg, #ea4335, #c5221f); }
+.indication-icon-wrap.bg-orange { background: linear-gradient(135deg, #fa7b17, #e37400); }
+.indication-icon-wrap.bg-blue { background: linear-gradient(135deg, #4285f4, #1a73e8); }
+.indication-icon-wrap.bg-purple { background: linear-gradient(135deg, #a142f4, #8430ce); }
+.indication-icon-wrap.bg-amber { background: linear-gradient(135deg, #fbbc04, #f29900); }
+
+.indication-info h3 {
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+}
+
+.indication-info p {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: 3px;
+}
+
+.mini-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--shape-corner-full);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  margin-top: 8px;
+}
+
+.mini-tag.warning {
+  background-color: var(--md-sys-color-warning-container);
+  color: var(--md-sys-color-warning);
+}
+
+/* --------------------------------------------------------------------------
+   12. Adverse Effects
+   -------------------------------------------------------------------------- */
+.adverse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.adverse-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--shape-corner-m);
+  background-color: var(--md-sys-color-surface-container);
+  border-left: 4px solid var(--md-sys-color-warning);
+}
+
+.adverse-icon-col {
+  color: var(--md-sys-color-warning);
+  font-size: 24px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.adverse-detail h4 {
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+}
+
+.adverse-detail p {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Red Flags & Contraindications
+   -------------------------------------------------------------------------- */
+.danger-card {
+  border-color: #fce8e6;
+}
+
+.danger-boxes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .danger-boxes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.danger-box {
+  background-color: #fdf2f2;
+  border: 1px solid #fad2cf;
+  border-radius: var(--shape-corner-l);
+  padding: 14px;
+}
+
+body.dark-theme .danger-box {
+  background-color: #2e1112;
+  border-color: #601410;
+}
+
+.danger-box.full-span {
+  grid-column: 1 / -1;
+}
+
+.danger-box.highlight-critical {
+  border: 2px solid var(--md-sys-color-error);
+  box-shadow: 0 0 10px rgba(217, 48, 37, 0.15);
+}
+
+.danger-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  color: var(--md-sys-color-error);
+}
+
+.danger-header h3 {
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.danger-box p {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.warning-alert {
+  background-color: #fff8e1;
+  border-color: #ffe082;
+}
+.warning-alert .danger-header {
+  color: #d97706;
+}
+body.dark-theme .warning-alert {
+  background-color: #332607;
+  border-color: #614a0f;
+}
+
+/* --------------------------------------------------------------------------
+   14. Bedside Safety Screener Tool
+   -------------------------------------------------------------------------- */
+.tool-intro {
+  font-size: 0.86rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-bottom: 14px;
+}
+
+.safety-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-field-group label {
+  display: block;
+  font-family: var(--font-brand);
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.md3-text-field {
+  display: flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container-high);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--shape-corner-s);
+  padding: 0 12px;
+  height: 48px;
+  transition: border-color var(--transition-standard);
+}
+
+.md3-text-field:focus-within {
+  border-color: var(--md-sys-color-primary);
+  background-color: var(--md-sys-color-surface);
+}
+
+.md3-text-field input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.unit-badge {
+  font-size: 0.78rem;
+  color: var(--md-sys-color-outline);
+  font-weight: 600;
+}
+
+.checkboxes-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.md3-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.md3-checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--md-sys-color-primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Material Buttons */
+.md3-filled-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--shape-corner-full);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-standard);
+}
+
+.md3-filled-button:hover {
+  box-shadow: var(--md-elevation-1);
+  filter: brightness(1.05);
+}
+
+.md3-outlined-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--shape-corner-full);
+  background: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-standard);
+}
+
+.md3-outlined-button:hover {
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.md3-tonal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--shape-corner-full);
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border: none;
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.md3-text-button {
+  background: transparent;
+  border: none;
+  color: var(--md-sys-color-primary);
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--shape-corner-full);
+}
+.md3-text-button:hover {
+  background-color: rgba(0,0,0,0.04);
+}
+
+/* Results Box */
+.safety-result-box {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: var(--shape-corner-l);
+  animation: fadeIn 250ms ease-out;
+}
+
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--shape-corner-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.result-badge.danger {
+  background-color: var(--md-sys-color-error);
+  color: #fff;
+}
+.result-badge.caution {
+  background-color: #f59e0b;
+  color: #fff;
+}
+.result-badge.safe {
+  background-color: var(--md-sys-color-success);
+  color: #fff;
+}
+
+.safety-result-box h4 {
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.safety-result-box ul {
+  padding-left: 20px;
+  font-size: 0.84rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   15. Tolerance Schedule Calculator
+   -------------------------------------------------------------------------- */
+.calc-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calc-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc-input label {
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.md3-time-input {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--shape-corner-s);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.schedule-output-card {
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-l);
+  padding: 16px;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .timeline-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.timeline-chip {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  border-radius: var(--shape-corner-m);
+}
+
+.timeline-chip.active-period {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  border: 1px solid #c2e7ff;
+}
+
+.timeline-chip.free-period {
+  background-color: #f3e8fd;
+  color: #7b1fa2;
+  border: 1px solid #e1bee7;
+}
+
+body.dark-theme .timeline-chip.active-period {
+  background-color: #0c274c;
+  color: #8ab4f8;
+  border-color: #174ea6;
+}
+
+body.dark-theme .timeline-chip.free-period {
+  background-color: #3b144c;
+  color: #ce93d8;
+  border-color: #7b1fa2;
+}
+
+.timeline-chip p {
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.rationale-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--md-sys-color-outline);
+}
+
+.rationale-note .material-symbols-outlined {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   16. Quiz Section
+   -------------------------------------------------------------------------- */
+.quiz-score-badge {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 4px 12px;
+  border-radius: var(--shape-corner-full);
+}
+
+.quiz-question-card {
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-l);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.q-number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+  text-transform: uppercase;
+}
+
+.q-text {
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--shape-corner-m);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  text-align: left;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-standard);
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.quiz-option-btn.correct {
+  background-color: #e6f4ea;
+  border-color: #34a853;
+  color: #137333;
+  font-weight: 600;
+}
+
+.quiz-option-btn.incorrect {
+  background-color: #fce8e6;
+  border-color: #ea4335;
+  color: #c5221f;
+}
+
+body.dark-theme .quiz-option-btn.correct {
+  background-color: #0f391e;
+  border-color: #34a853;
+  color: #81c995;
+}
+
+body.dark-theme .quiz-option-btn.incorrect {
+  background-color: #441315;
+  border-color: #ea4335;
+  color: #f28b82;
+}
+
+.q-feedback {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: var(--shape-corner-s);
+  font-size: 0.82rem;
+  display: none;
+}
+
+.q-feedback.visible {
+  display: block;
+}
+
+.q-feedback.correct-fb {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.q-feedback.incorrect-fb {
+  background-color: #fce8e6;
+  color: #c5221f;
+}
+
+/* --------------------------------------------------------------------------
+   17. References Links List
+   -------------------------------------------------------------------------- */
+.ref-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--shape-corner-m);
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  transition: background-color var(--transition-standard);
+}
+
+.ref-item:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  text-decoration: none;
+}
+
+.ref-icon {
+  color: var(--md-sys-color-primary);
+  font-size: 22px;
+}
+
+.ref-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-name {
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.ref-author {
+  font-size: 0.74rem;
+  color: var(--md-sys-color-outline);
+}
+
+.link-arrow {
+  color: var(--md-sys-color-outline);
+  font-size: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   18. Google Floating Action Button (FAB)
+   -------------------------------------------------------------------------- */
+.md3-fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 16px);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 20px;
+  border-radius: var(--shape-corner-l);
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+  color: #ffffff;
+  border: none;
+  box-shadow: var(--md-elevation-3);
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard);
+}
+
+.md3-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--md-elevation-4);
+}
+
+.md3-fab .material-symbols-outlined {
+  font-size: 24px;
+}
+
+@media (min-width: 768px) {
+  .md3-fab {
+    bottom: 24px;
+    right: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   19. Mobile Bottom Navigation Bar (Google Material 3)
+   -------------------------------------------------------------------------- */
+.md3-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--bottom-nav-height) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background-color: var(--md-sys-color-surface);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 99;
+}
+
+@media (min-width: 860px) {
+  .md3-bottom-nav {
+    display: none; /* Desktop uses top navigation & drawer */
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 4px 12px;
+  cursor: pointer;
+  flex: 1;
+  transition: all var(--transition-standard);
+}
+
+.nav-item .nav-icon {
+  font-size: 22px;
+  padding: 4px 16px;
+  border-radius: var(--shape-corner-full);
+  transition: background-color var(--transition-standard), color var(--transition-standard);
+}
+
+.nav-item .nav-label {
+  font-family: var(--font-brand);
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.nav-item.active {
+  color: var(--md-sys-color-primary);
+}
+
+.nav-item.active .nav-icon {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  font-variation-settings: 'FILL' 1;
+}
+
+/* --------------------------------------------------------------------------
+   20. Bookmarks Dialog & Snackbar
+   -------------------------------------------------------------------------- */
+.md3-dialog {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: auto;
+  max-width: 480px;
+  width: 90vw;
+}
+
+.md3-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialog-surface {
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--shape-corner-xl);
+  padding: 24px;
+  box-shadow: var(--md-elevation-3);
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.dialog-title {
+  font-family: var(--font-brand);
+  font-size: 1.25rem;
+}
+
+.dialog-body {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.bookmark-dialog-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--shape-corner-m);
+}
+
+/* Snackbar */
+.md3-snackbar {
+  position: fixed;
+  bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #323232;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--shape-corner-full);
+  font-size: 0.88rem;
+  box-shadow: var(--md-elevation-3);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-decelerate);
+}
+
+.md3-snackbar.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
