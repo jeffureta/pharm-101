@@ -60,7 +60,7 @@
     <div class="chip-scroller">
       <button class="md3-chip active" data-catalog-filter="all">
         <span class="material-symbols-outlined chip-icon">grid_view</span>
-        <span class="chip-label">All Drugs (2)</span>
+        <span class="chip-label">All Drugs (3)</span>
       </button>
       <button class="md3-chip" data-catalog-filter="cardiovascular">
         <span class="material-symbols-outlined chip-icon">cardiology</span>
@@ -73,6 +73,10 @@
       <button class="md3-chip" data-catalog-filter="emergency">
         <span class="material-symbols-outlined chip-icon">e911_emergency</span>
         <span class="chip-label">Emergency & Resuscitation</span>
+      </button>
+      <button class="md3-chip" data-catalog-filter="renal">
+        <span class="material-symbols-outlined chip-icon">water_drop</span>
+        <span class="chip-label">Renal &amp; Diuretics</span>
       </button>
     </div>
   </nav>
@@ -104,6 +108,10 @@
       <a href="propofol.html" class="drawer-item">
         <span class="material-symbols-outlined">vaccines</span>
         <span>Propofol (IV Anaesthetic)</span>
+      </a>
+      <a href="furosemide.html" class="drawer-item">
+        <span class="material-symbols-outlined">water_drop</span>
+        <span>Furosemide (Loop Diuretic)</span>
       </a>
       <div class="drawer-divider"></div>
       <div class="drawer-section-title">APP FEATURES</div>
@@ -145,7 +153,7 @@
         <div class="quick-facts-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 14px;">
           <div class="fact-tile">
             <span class="fact-label">ACTIVE MODULES</span>
-            <span class="fact-val highlight-blue">2 Core Drugs</span>
+            <span class="fact-val highlight-blue">3 Core Drugs</span>
           </div>
           <div class="fact-tile">
             <span class="fact-label">BEDSIDE TOOLS</span>
@@ -267,6 +275,58 @@
           </div>
         </div>
 
+        <!-- CARD 3: FUROSEMIDE -->
+        <div class="catalog-card" data-category="cardiovascular emergency renal" data-drug="furosemide frusemide lasix loop diuretic nkcc2 edema aki pulmonary oedema heart failure">
+          <div>
+            <div class="catalog-card-header">
+              <div class="catalog-drug-icon" style="background: linear-gradient(135deg, #0288d1, #03a9f4);">
+                <span class="material-symbols-outlined">water_drop</span>
+              </div>
+              <div class="catalog-header-text">
+                <h2 class="catalog-drug-name">Furosemide</h2>
+                <span class="catalog-drug-alias">Frusemide &bull; Lasix</span>
+                <div>
+                  <span class="catalog-class-badge" style="background-color: #e1f5fe; color: #0277bd;">Loop Diuretic (High-Ceiling)</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="catalog-summary-text">
+              Inhibits the <strong>Na&sup1;/K&sup1;/2Cl&minus; (NKCC2) cotransporter</strong> in the thick ascending limb of the Loop of Henle, producing high-ceiling natriuresis. Also stimulates renal <strong>COX-2 &rarr; PGE&#8322;</strong>, causing rapid venodilation 5&ndash;15 min before diuresis.
+            </p>
+
+            <div class="catalog-pills-row">
+              <span class="tag-pill">Onset: 5 min (IV)</span>
+              <span class="tag-pill">Bioavail: ~50%</span>
+              <span class="tag-pill">t&frac12;: 1.5&ndash;2 h</span>
+              <span class="tag-pill">Protein binding: 95%&ndash;98%</span>
+            </div>
+
+            <div class="catalog-features-list">
+              <div class="catalog-feature-item">
+                <span class="material-symbols-outlined">shield</span>
+                <span>Bedside Electrolyte &amp; Safety Screener</span>
+              </div>
+              <div class="catalog-feature-item">
+                <span class="material-symbols-outlined">calculate</span>
+                <span>Oral-to-IV Converter &amp; FST Dosing Calculator</span>
+              </div>
+              <div class="catalog-feature-item">
+                <span class="material-symbols-outlined">school</span>
+                <span>5-Question Clinical Pharmacology Quiz</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="catalog-action-row">
+            <span style="font-size: 0.78rem; color: var(--md-sys-color-outline);">APO &bull; Heart Failure &bull; AKI &bull; Hypercalcaemia</span>
+            <a href="furosemide.html" class="catalog-open-btn" style="background-color: #0277bd;">
+              <span>Open Furosemide Module</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -376,6 +436,10 @@
     <a href="propofol.html" class="nav-item" style="text-decoration: none;">
       <span class="material-symbols-outlined nav-icon">vaccines</span>
       <span class="nav-label">Propofol</span>
+    </a>
+    <a href="furosemide.html" class="nav-item" style="text-decoration: none;">
+      <span class="material-symbols-outlined nav-icon">water_drop</span>
+      <span class="nav-label">Furosemide</span>
     </a>
   </nav>
 

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Pharm 101: Furosemide (Frusemide) - Emergency and Critical Care Loop Diuretic Pharmacology Reference Guide. Mobile-first Google Material web app.">
+  <meta name="theme-color" content="#1a73e8" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Furosemide • Pharm 101 | Clinical Pharmacology Reference</title>
+
+  <!-- Google Fonts: Roboto & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="light-theme">
+  <!-- Google App Header -->
+  <header class="md3-app-bar" id="topAppBar">
+    <div class="app-bar-start">
+      <button class="md3-icon-button" id="menuButton" aria-label="Menu Navigation" title="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <a href="index.html" class="app-brand" style="text-decoration: none; color: inherit;">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #0288d1, #03a9f4);">
+          <span class="material-symbols-outlined brand-glyph">water_drop</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Pharm 101</span>
+          <span class="brand-subtitle">Clinical Pharmacology</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Google Pill Search Bar -->
+    <div class="app-search-wrapper" id="searchWrapper">
+      <div class="search-box">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="search" id="searchInput" placeholder="Search Furosemide mechanism, dosing, ototoxicity, AKI..." aria-label="Search drug information" autocomplete="off">
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear search" style="display: none;">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="app-bar-end">
+      <button class="md3-icon-button" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+      </button>
+      <button class="md3-icon-button" id="bookmarkListBtn" aria-label="Saved Bookmarks" title="Saved items">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="badge-dot" id="bookmarkDot" style="display: none;"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filter Chips Bar (Google-style horizontal scrollable pill chips) -->
+  <nav class="md3-chip-bar" id="chipBar" aria-label="Category filters">
+    <div class="chip-scroller">
+      <button class="md3-chip active" data-filter="all">
+        <span class="material-symbols-outlined chip-icon">select_all</span>
+        <span class="chip-label">All</span>
+      </button>
+      <button class="md3-chip" data-filter="overview">
+        <span class="material-symbols-outlined chip-icon">info</span>
+        <span class="chip-label">Overview</span>
+      </button>
+      <button class="md3-chip" data-filter="pd">
+        <span class="material-symbols-outlined chip-icon">tune</span>
+        <span class="chip-label">Pharmacodynamics</span>
+      </button>
+      <button class="md3-chip" data-filter="pk">
+        <span class="material-symbols-outlined chip-icon">timer</span>
+        <span class="chip-label">Pharmacokinetics</span>
+      </button>
+      <button class="md3-chip" data-filter="indications">
+        <span class="material-symbols-outlined chip-icon">medical_services</span>
+        <span class="chip-label">Clinical Uses</span>
+      </button>
+      <button class="md3-chip" data-filter="adverse">
+        <span class="material-symbols-outlined chip-icon">report_problem</span>
+        <span class="chip-label">Adverse Effects</span>
+      </button>
+      <button class="md3-chip" data-filter="contraindications">
+        <span class="material-symbols-outlined chip-icon">block</span>
+        <span class="chip-label">Contraindications</span>
+      </button>
+      <button class="md3-chip" data-filter="tools">
+        <span class="material-symbols-outlined chip-icon">calculate</span>
+        <span class="chip-label">Tools & Converters</span>
+      </button>
+      <button class="md3-chip" data-filter="quiz">
+        <span class="material-symbols-outlined chip-icon">quiz</span>
+        <span class="chip-label">Quiz</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Side Navigation Drawer -->
+  <aside class="md3-nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-header-brand">
+        <span class="material-symbols-outlined brand-glyph" style="color: #0288d1;">water_drop</span>
+        <div>
+          <h3>Pharm 101</h3>
+          <p>Emergency & Critical Care</p>
+        </div>
+      </div>
+      <button class="md3-icon-button" id="closeDrawerBtn" aria-label="Close navigation drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section-title">DRUG DIRECTORY</div>
+      <a href="index.html" class="drawer-item">
+        <span class="material-symbols-outlined">grid_view</span>
+        <span>Drug Directory</span>
+      </a>
+      <a href="gtn.html" class="drawer-item">
+        <span class="material-symbols-outlined">medication</span>
+        <span>GTN (Vasodilator)</span>
+      </a>
+      <a href="propofol.html" class="drawer-item">
+        <span class="material-symbols-outlined">vaccines</span>
+        <span>Propofol (IV Anaesthetic)</span>
+      </a>
+      <a href="furosemide.html" class="drawer-item active">
+        <span class="material-symbols-outlined">water_drop</span>
+        <span>Furosemide (Loop Diuretic)</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">FUROSEMIDE SECTIONS</div>
+      <a href="#hero-section" class="drawer-item active" data-target="all">
+        <span class="material-symbols-outlined">home</span>
+        <span>Drug Summary</span>
+      </a>
+      <a href="#pd-section" class="drawer-item" data-target="pd">
+        <span class="material-symbols-outlined">science</span>
+        <span>Pharmacodynamics</span>
+      </a>
+      <a href="#pk-section" class="drawer-item" data-target="pk">
+        <span class="material-symbols-outlined">hourglass_top</span>
+        <span>Pharmacokinetics</span>
+      </a>
+      <a href="#indications-section" class="drawer-item" data-target="indications">
+        <span class="material-symbols-outlined">local_hospital</span>
+        <span>Clinical Indications</span>
+      </a>
+      <a href="#adverse-section" class="drawer-item" data-target="adverse">
+        <span class="material-symbols-outlined">warning</span>
+        <span>Adverse Effects & Ototoxicity</span>
+      </a>
+      <a href="#contraindications-section" class="drawer-item" data-target="contraindications">
+        <span class="material-symbols-outlined">do_not_disturb</span>
+        <span>Red Flags & Safety</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">CLINICAL INTERACTIVE TOOLS</div>
+      <a href="#safety-checker-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">shield</span>
+        <span>Electrolyte & Safety Screener</span>
+      </a>
+      <a href="#converter-calculator-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">calculate</span>
+        <span>Oral-to-IV Converter & FST</span>
+      </a>
+      <a href="#quiz-section" class="drawer-item" data-target="quiz">
+        <span class="material-symbols-outlined">school</span>
+        <span>Furosemide Self-Quiz</span>
+      </a>
+    </div>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
+  <!-- Main Content Container -->
+  <main class="md3-main-container" id="mainContainer">
+
+    <!-- Active Search Results Banner -->
+    <div class="search-status-banner" id="searchBanner" style="display: none;">
+      <span class="search-status-text">Showing results for "<strong id="searchQueryDisplay"></strong>"</span>
+      <button class="md3-text-button" id="resetSearchBtn">Reset</button>
+    </div>
+
+    <!-- 1. HERO / OVERVIEW CARD -->
+    <section class="card-section" id="hero-section" data-category="overview">
+      <div class="md3-card hero-card" style="border-color: #b3e5fc;">
+        <div class="hero-header-row">
+          <div class="hero-chip-badge" style="background-color: #e1f5fe; color: #0277bd;">
+            <span class="material-symbols-outlined">bolt</span>
+            <span>Clinical Pharmacology • Basic Science</span>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="hero" aria-label="Bookmark card" title="Save to bookmarks">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <h1 class="hero-title">Furosemide</h1>
+        <p class="hero-subtitle">Also known as: <em>Frusemide</em> • Lasix • Anthranilic acid / Sulfonamide derivative</p>
+
+        <!-- Quick Facts Pill Grid -->
+        <div class="quick-facts-grid">
+          <div class="fact-tile">
+            <span class="fact-label">DRUG CLASS</span>
+            <span class="fact-val highlight-blue">Loop Diuretic (High-Ceiling)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">PRIMARY TARGET</span>
+            <span class="fact-val">NKCC2 Cotransporter (Thick Ascending Limb)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">ORAL BIOAVAILABILITY</span>
+            <span class="fact-val">~50% (The 50% Rule: 40 mg PO &approx; 20 mg IV)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">PEAK EFFECT</span>
+            <span class="fact-val">30 min (IV) &bull; 1 hour (PO)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">DURATION OF ACTION</span>
+            <span class="fact-val">2 – 3 hours IV (&ldquo;Lasts Six&rdquo; hours PO)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">SECONDARY ACTION</span>
+            <span class="fact-val highlight-amber">&uarr; COX-2 / Prostaglandins &rarr; Venodilation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PHARMACODYNAMICS SECTION -->
+    <section class="card-section" id="pd-section" data-category="pd">
+      <div class="md3-card pd-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-blue">tune</span>
+            <div>
+              <h2 class="card-title">Pharmacodynamics (PD)</h2>
+              <p class="card-subhead">Two distinct mechanisms: NKCC2 cotransporter inhibition & prostaglandin venodilation</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pd" aria-label="Bookmark Pharmacodynamics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Biochemical Pathway Stepper -->
+        <div class="pathway-container">
+          <div class="pathway-step">
+            <div class="step-num" style="background-color: #0288d1;">1</div>
+            <div class="step-content">
+              <strong>Luminal Secretion via Organic Acid Transporters</strong>
+              <p>Furosemide travels bound to albumin (95%) and is actively secreted by proximal tubule OAT transporters into tubular fluid to reach its luminal target.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num" style="background-color: #0288d1;">2</div>
+            <div class="step-content">
+              <strong>NKCC2 Cotransporter Inhibition in Thick Ascending Limb (TAL)</strong>
+              <p>Reversibly binds the chloride site of the <strong>Na⁺/K⁺/2Cl⁻ (NKCC2)</strong> cotransporter on the apical membrane, blocking ~25% of total filtered NaCl reabsorption.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num" style="background-color: #0288d1;">3</div>
+            <div class="step-content">
+              <strong>Abolition of Transepithelial Positive Potential</strong>
+              <p>Inhibition of K⁺ recycling eliminates the lumen-positive electrical gradient (+8 to +10 mV), abolishing the paracellular drive and massively increasing <strong>Magnesium (Mg²⁺) and Calcium (Ca²⁺) excretion</strong>.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num" style="background-color: #0288d1;">4</div>
+            <div class="step-content">
+              <strong>COX-2 & Prostaglandin-Mediated Vascular Effects</strong>
+              <p>Stimulates renal COX-2 expression, increasing vasodilatory prostaglandins (PGE₂ and PGI₂). This produces rapid <strong>systemic venodilation</strong> and increases renal cortical blood flow.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual Action Comparison -->
+        <div class="dose-dynamics-box">
+          <div class="dose-column veno-col" style="background-color: #e1f5fe; border-color: #b3e5fc;">
+            <div class="dose-header">
+              <span class="material-symbols-outlined" style="color: #0288d1;">speed</span>
+              <h4>Acute Hemodynamic Venodilation (5–15 min)</h4>
+            </div>
+            <div class="dose-tag" style="background-color: #0288d1;">Prostaglandin Mediated</div>
+            <ul class="clean-bullet-list">
+              <li>Occurs <strong>before any onset of diuresis</strong> via renal prostaglandin (PGE₂) and sympathetic modulation.</li>
+              <li>Promotes venous capacitance pooling, rapidly decreasing <strong>cardiac venous return (preload)</strong>.</li>
+              <li>Significantly lowers <strong>Left Ventricular Filling Pressure (LVFP)</strong> and pulmonary capillary wedge pressure in acute cardiogenic pulmonary edema (APO).</li>
+              <li>Blunted by concomitant NSAID administration!</li>
+            </ul>
+          </div>
+
+          <div class="dose-column arterio-col" style="background-color: #e8f5e9; border-color: #c8e6c9;">
+            <div class="dose-header">
+              <span class="material-symbols-outlined" style="color: #2e7d32;">water_drop</span>
+              <h4>Renal Natriuretic Diuresis (30–60 min)</h4>
+            </div>
+            <div class="dose-tag" style="background-color: #2e7d32;">High-Ceiling Diuresis</div>
+            <ul class="clean-bullet-list">
+              <li>High-ceiling natriuresis: Excretes up to 20%–25% of filtered sodium load.</li>
+              <li>Causes profound loss of <strong>Na⁺, Cl⁻, K⁺, H⁺, Mg²⁺, and Ca²⁺</strong>.</li>
+              <li>Disrupts the hypertonic medullary gradient, impairing the kidney's ability to concentrate urine.</li>
+              <li>Reduces total extracellular fluid (ECF) volume and interstitial edema.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Key Clinical Pearl Box -->
+        <div class="pearl-callout">
+          <span class="material-symbols-outlined pearl-icon">lightbulb</span>
+          <div class="pearl-text">
+            <strong>Key Emergency Pearl:</strong> In acute cardiogenic pulmonary edema, furosemide provides rapid symptomatic relief within 5–15 minutes through <em>prostaglandin-mediated venodilation and preload reduction</em> well before any urine is produced in the catheter!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PHARMACOKINETICS SECTION -->
+    <section class="card-section" id="pk-section" data-category="pk">
+      <div class="md3-card pk-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-teal">timer</span>
+            <div>
+              <h2 class="card-title">Pharmacokinetics (PK)</h2>
+              <p class="card-subhead">The 50% bioavailability rule, active tubular secretion, and elimination</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pk" aria-label="Bookmark Pharmacokinetics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="metric-row">
+          <div class="metric-card">
+            <div class="metric-number">~50%</div>
+            <div class="metric-title">Oral Bioavailability</div>
+            <div class="metric-desc">Range 40%–60%. Rule of thumb: Oral dose is roughly double the IV dose (40 mg PO &approx; 20 mg IV)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">95%–98%</div>
+            <div class="metric-title">Plasma Protein Binding</div>
+            <div class="metric-desc">Bound to albumin; poorly filtered at glomerulus, relies on active proximal tubular secretion</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">1.5–2 hours</div>
+            <div class="metric-title">Elimination Half-Life (t½)</div>
+            <div class="metric-desc">Extends to 4–10 hours in severe acute kidney injury (AKI) or end-stage renal disease</div>
+          </div>
+        </div>
+
+        <!-- Absorption and Distribution Details -->
+        <div class="info-block">
+          <h4 class="block-title">
+            <span class="material-symbols-outlined">directions_alt</span>
+            Active Secretion to Site of Action
+          </h4>
+          <p>Because furosemide is >95% protein-bound to circulating albumin, minimal drug enters the tubular lumen via glomerular filtration. Instead, it reaches its luminal site of action in the thick ascending limb through <strong>active secretion via organic acid transporters (OAT1/OAT3)</strong> in the proximal convoluted tubule.</p>
+          <p style="margin-top: 6px;"><strong>Drug Interaction Note:</strong> Uremic organic anions, <strong>probenecid</strong>, and <strong>NSAIDs</strong> compete for these proximal tubule transporters, reducing luminal delivery and causing furosemide resistance.</p>
+        </div>
+
+        <!-- Metabolism and Elimination Details -->
+        <div class="info-block">
+          <h4 class="block-title">
+            <span class="material-symbols-outlined">metabolism</span>
+            Metabolism & Excretion
+          </h4>
+          <p>Approximately <strong>65% of furosemide is excreted unchanged by the kidneys</strong> via tubular secretion and urinary clearance. The remaining ~35% undergoes hepatic glucuronidation (furosemide glucuronide) with negligible cytochrome P450 oxidation. Duration of action is <strong>2–3 hours following IV bolus</strong> and 6–8 hours orally (&ldquo;Lasix&rdquo; = Lasts Six hours).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CLINICAL USES / INDICATIONS SECTION -->
+    <section class="card-section" id="indications-section" data-category="indications">
+      <div class="md3-card indications-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-indigo">medical_services</span>
+            <div>
+              <h2 class="card-title">Clinical Uses & Indications</h2>
+              <p class="card-subhead">Emergency volume overload, hyperkalemia, hypercalcemia, and renal assessment</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="indications" aria-label="Bookmark Indications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="indications-grid">
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-blue">
+              <span class="material-symbols-outlined">lungs</span>
+            </div>
+            <div class="indication-info">
+              <h3>Acute Pulmonary Oedema (APO)</h3>
+              <p>Cardiogenic pulmonary edema and acute decompensated heart failure. Dual benefit: rapid venodilation unloads pulmonary capillaries immediately, followed by massive diuresis.</p>
+              <div class="mini-tag">20 – 80 mg IV Bolus</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-orange">
+              <span class="material-symbols-outlined">water_damage</span>
+            </div>
+            <div class="indication-info">
+              <h3>Oedematous States & Cirrhosis</h3>
+              <p>Volume overload in hepatic cirrhosis with ascites, nephrotic syndrome, and congestive heart failure. Frequently combined with spironolactone (e.g. 100 mg spironolactone : 40 mg furosemide).</p>
+              <div class="mini-tag">Titrated Oral / IV</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-red">
+              <span class="material-symbols-outlined">vital_signs</span>
+            </div>
+            <div class="indication-info">
+              <h3>Severe Hyperkalaemia</h3>
+              <p>Enhances urinary potassium excretion by delivering high sodium loads to the cortical collecting duct. Most effective when administered alongside isotonic saline rehydration.</p>
+              <div class="mini-tag">40 – 80 mg IV with Saline</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-purple">
+              <span class="material-symbols-outlined">bone</span>
+            </div>
+            <div class="indication-info">
+              <h3>Severe Symptomatic Hypercalcaemia</h3>
+              <p>Inhibits the transepithelial potential in the Loop of Henle, promoting marked calciuria. <strong>Crucial rule:</strong> Administer ONLY after complete volume rehydration with 0.9% normal saline.</p>
+              <div class="mini-tag">Post-Hydration Calciuria</div>
+            </div>
+          </div>
+
+          <div class="indication-card full-span">
+            <div class="indication-icon-wrap bg-amber">
+              <span class="material-symbols-outlined">vital_signs</span>
+            </div>
+            <div class="indication-info">
+              <h3>Acute Kidney Injury & Furosemide Stress Test (FST)</h3>
+              <p>Used to evaluate tubular functional reserve in early Stage 1–2 AKI. A standardized high-dose bolus (<strong>1.0 mg/kg in loop-naive patients or 1.5 mg/kg in previous loop users</strong>) is administered. Urine output &lt; 200 mL over 2 hours predicts progression to severe Stage 3 AKI and need for Renal Replacement Therapy (RRT).</p>
+              <div class="mini-tag warning">FST Diagnostic Protocol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ADVERSE EFFECTS SECTION -->
+    <section class="card-section" id="adverse-section" data-category="adverse">
+      <div class="md3-card adverse-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-amber">report_problem</span>
+            <div>
+              <h2 class="card-title">Adverse Effects & Ototoxicity</h2>
+              <p class="card-subhead">Electrolyte depletion, acid-base disturbances, and cochlear toxicity</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="adverse" aria-label="Bookmark Adverse Effects">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="adverse-list">
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">science</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Hypokalaemic, Hypochloraemic Metabolic Alkalosis</h4>
+              <p>High Na⁺ delivery to the cortical collecting duct stimulates excessive ENaC reabsorption and reciprocal aldosterone-driven K⁺ and H⁺ secretion. Leads to weakness, cardiac arrhythmias, and metabolic alkalosis.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item" style="border-left-color: #d93025;">
+            <div class="adverse-icon-col" style="color: #d93025;">
+              <span class="material-symbols-outlined">hearing_disabled</span>
+            </div>
+            <div class="adverse-detail">
+              <h4 style="color: #d93025;">Ototoxicity (Tinnitus & Sensorineural Hearing Loss)</h4>
+              <p>Inhibits the NKCC cotransporter in the stria vascularis of the inner ear, disrupting endolymph electrolyte composition. Dose-related and usually reversible, but heightened with <strong>rapid IV bolus administration (&gt; 4 mg/min)</strong>, renal failure, or concomitant aminoglycosides (gentamicin).</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">electric_bolt</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Hypomagnesaemia & Hypocalcaemia</h4>
+              <p>Loss of the lumen-positive potential in the thick ascending limb abolishes paracellular divalent cation reabsorption. Hypomagnesemia impairs cardiac membrane stability and makes hypokalemia refractory to replacement.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">flare</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Hyperuricaemia & Precipitated Gout</h4>
+              <p>Volume contraction stimulates proximal tubule uric acid reabsorption, while furosemide directly competes with urate for tubular secretion, triggering acute gout flares.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">allergy</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Sulfonamide Hypersensitivity & Interstitial Nephritis</h4>
+              <p>Furosemide is a sulfonamide derivative. Potential cross-reactions include skin rashes, eosinophilia, drug fever, and acute allergic tubulointerstitial nephritis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRECAUTIONS & CONTRAINDICATIONS SECTION -->
+    <section class="card-section" id="contraindications-section" data-category="contraindications">
+      <div class="md3-card danger-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-danger">do_not_disturb_on</span>
+            <div>
+              <h2 class="card-title">Precautions & Contraindications</h2>
+              <p class="card-subhead">Volume depletion, electrolyte red flags & critical drug interactions</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="contraindications" aria-label="Bookmark Contraindications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="danger-boxes-grid">
+          <div class="danger-box highlight-critical">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">crisis_alert</span>
+              <h3>Severe Hypovolaemia & Pre-Renal Shock</h3>
+            </div>
+            <p><strong>Crucial Red Flag!</strong> Administering loop diuretics to a hypovolemic patient converts prerenal azotemia into ischemic acute tubular necrosis (ATN) and triggers profound circulatory collapse. Always verify intravascular volume.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">monitor_heart</span>
+              <h3>Severe Hypokalaemia (K⁺ &lt; 3.0 mmol/L)</h3>
+            </div>
+            <p>Diuresis drastically accelerates potassium excretion, precipitating life-threatening ventricular arrhythmias (torsades de pointes, ventricular tachycardia). Correct potassium before aggressive diuresis.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">block</span>
+              <h3>Anuria Unresponsive to Test Dose</h3>
+            </div>
+            <p>Established complete anuria unresponsive to adequate trial dosing indicates extensive parenchymal damage or urinary tract obstruction. High doses in anuria offer no benefit and drastically increase ototoxicity risk.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">medication</span>
+              <h3>Digoxin & Lithium Co-Administration</h3>
+            </div>
+            <p><strong>High-Risk Toxicity!</strong> Furosemide-induced hypokalemia and hypomagnesemia drastically potentiate digoxin myocardial toxicity, while volume depletion decreases renal lithium clearance leading to neurotoxicity.</p>
+          </div>
+
+          <div class="danger-box full-span warning-alert">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">warning</span>
+              <h3>NSAID & Probenecid Drug Interaction</h3>
+            </div>
+            <p>Concomitant NSAID administration inhibits renal COX-2 prostaglandin synthesis, preventing acute venodilation and blunting natriuresis by up to 50%. Both NSAIDs and probenecid compete with furosemide for proximal tubule OAT secretion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE BED-SIDE SAFETY & ELECTROLYTE SCREENER -->
+    <section class="card-section" id="safety-checker-section" data-category="tools">
+      <div class="md3-card tools-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-green">shield</span>
+            <div>
+              <h2 class="card-title">Bedside Furosemide Safety & Electrolyte Screener</h2>
+              <p class="card-subhead">Interactive decision support tool prior to acute diuretic administration</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-intro">Check patient electrolyte and volume parameters before administering IV furosemide:</p>
+
+        <form id="furosemideSafetyForm" class="safety-form">
+          <div class="input-field-group">
+            <label for="fKInput">Serum Potassium (K⁺ in mmol/L)</label>
+            <div class="md3-text-field">
+              <input type="number" id="fKInput" placeholder="e.g. 4.2" min="1.5" max="8.0" step="0.1" required>
+              <span class="unit-badge">mmol/L</span>
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <label for="fSbpInput">Systolic Blood Pressure (SBP in mmHg)</label>
+            <div class="md3-text-field">
+              <input type="number" id="fSbpInput" placeholder="e.g. 135" min="40" max="260" required>
+              <span class="unit-badge">mmHg</span>
+            </div>
+          </div>
+
+          <div class="checkboxes-group">
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkVolumeDepletion">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Clinical signs of <strong>dehydration, hypovolemia, or septic shock</strong></span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkDigoxinLithium">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Concomitant <strong>Digoxin or Lithium</strong> therapy</span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkAminoglycosides">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Concomitant ototoxic agents (e.g. <strong>gentamicin / amikacin</strong>)</span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkNsaidUse">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Recent <strong>NSAID</strong> ingestion (blunts diuresis & venodilation)</span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkSulfaAnaphylaxis">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Documented history of <strong>severe sulfonamide anaphylaxis</strong></span>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="md3-filled-button" id="evalFurosemideSafetyBtn">
+              <span class="material-symbols-outlined">verified_user</span>
+              <span>Evaluate Safety</span>
+            </button>
+            <button type="button" class="md3-outlined-button" id="resetFurosemideSafetyBtn">Reset</button>
+          </div>
+        </form>
+
+        <div id="furosemideSafetyResultBox" class="safety-result-box" style="display: none;">
+          <!-- Dynamically populated via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ORAL-TO-IV CONVERTER & FUROSEMIDE STRESS TEST CALCULATOR -->
+    <section class="card-section" id="converter-calculator-section" data-category="tools">
+      <div class="md3-card tolerance-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-purple">calculate</span>
+            <div>
+              <h2 class="card-title">Oral-to-IV Converter & FST Dosing Tool</h2>
+              <p class="card-subhead">Apply the 50% bioavailability rule and calculate Furosemide Stress Test protocols</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-input">
+            <label for="converterDirection">Calculation Mode:</label>
+            <select id="converterDirection" class="md3-time-input" style="width: 250px; font-size: 0.88rem;">
+              <option value="po-to-iv" selected>Oral (PO) &rarr; Intravenous (IV)</option>
+              <option value="iv-to-po">Intravenous (IV) &rarr; Oral (PO)</option>
+              <option value="fst-calc">Furosemide Stress Test (FST)</option>
+            </select>
+          </div>
+
+          <div class="calc-input" id="inputDoseGroup">
+            <label id="inputDoseLabel" for="inputDoseValue">Daily Oral Dose (mg):</label>
+            <input type="number" id="inputDoseValue" value="40" min="5" max="1000" class="md3-time-input" style="width: 140px;">
+          </div>
+
+          <div class="calc-input" id="weightGroup" style="display: none;">
+            <label for="fstPatientWeight">Patient Weight (kg):</label>
+            <input type="number" id="fstPatientWeight" value="70" min="20" max="250" class="md3-time-input" style="width: 140px;">
+          </div>
+
+          <button class="md3-tonal-button" id="calcConverterBtn">
+            <span class="material-symbols-outlined">calculate</span>
+            <span>Compute</span>
+          </button>
+        </div>
+
+        <div class="schedule-output-card" id="converterOutputCard">
+          <div class="timeline-row">
+            <div class="timeline-chip active-period" style="background-color: #e1f5fe; color: #0277bd; border-color: #b3e5fc;">
+              <span class="material-symbols-outlined">medication</span>
+              <div>
+                <strong id="resultBoxTitle">Equivalent IV Dose</strong>
+                <p id="resultBoxValue">20 mg IV (50% Bioavailability Rule)</p>
+              </div>
+            </div>
+            <div class="timeline-chip free-period" style="background-color: #ede7f6; color: #512da8; border-color: #d1c4e9;">
+              <span class="material-symbols-outlined">speed</span>
+              <div>
+                <strong>Injection Administration Rate</strong>
+                <p id="rateBoxValue">Slow IV bolus (&le; 4 mg/min to avoid ototoxicity)</p>
+              </div>
+            </div>
+          </div>
+          <div class="rationale-note">
+            <span class="material-symbols-outlined">info</span>
+            <span id="converterTipText">Oral furosemide has ~50% bioavailability. Thus, 40 mg PO is roughly equivalent to 20 mg IV. Administer slowly over 2–5 minutes.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FUROSEMIDE PHARM 101 SELF-ASSESSMENT QUIZ -->
+    <section class="card-section" id="quiz-section" data-category="quiz">
+      <div class="md3-card quiz-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-red">school</span>
+            <div>
+              <h2 class="card-title">Pharm 101 Self-Assessment Quiz</h2>
+              <p class="card-subhead">Test your knowledge with 5 clinical pharmacology questions</p>
+            </div>
+          </div>
+          <div class="quiz-score-badge" id="quizScoreBadge">Score: <span id="currentScore">0</span> / 5</div>
+        </div>
+
+        <div class="quiz-container" id="quizContainer">
+          <!-- Dynamically populated via JavaScript -->
+        </div>
+
+        <div class="quiz-controls">
+          <button class="md3-filled-button" id="restartQuizBtn" style="display: none;">
+            <span class="material-symbols-outlined">replay</span>
+            <span>Restart Quiz</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Google Floating Action Button (FAB) -->
+  <button class="md3-fab" id="fabAction" aria-label="Converter Tool" title="Quick Dose Converter">
+    <span class="material-symbols-outlined">calculate</span>
+    <span class="fab-label">Dose Converter</span>
+  </button>
+
+  <!-- Mobile Bottom Navigation Bar (Google Material 3 Standard) -->
+  <nav class="md3-bottom-nav" id="bottomNav" aria-label="Bottom mobile navigation">
+    <button class="nav-item active" data-nav="all">
+      <span class="material-symbols-outlined nav-icon">home</span>
+      <span class="nav-label">Summary</span>
+    </button>
+    <button class="nav-item" data-nav="pd">
+      <span class="material-symbols-outlined nav-icon">tune</span>
+      <span class="nav-label">Dynamics</span>
+    </button>
+    <button class="nav-item" data-nav="pk">
+      <span class="material-symbols-outlined nav-icon">timer</span>
+      <span class="nav-label">Kinetics</span>
+    </button>
+    <button class="nav-item" data-nav="contraindications">
+      <span class="material-symbols-outlined nav-icon">shield</span>
+      <span class="nav-label">Safety</span>
+    </button>
+    <button class="nav-item" data-nav="quiz">
+      <span class="material-symbols-outlined nav-icon">quiz</span>
+      <span class="nav-label">Quiz</span>
+    </button>
+  </nav>
+
+  <!-- Bookmarks Modal Dialog -->
+  <dialog class="md3-dialog" id="bookmarksDialog">
+    <div class="dialog-surface">
+      <div class="dialog-header">
+        <h3 class="dialog-title">Saved Furosemide Sections</h3>
+        <button class="md3-icon-button" id="closeBookmarksDialogBtn" aria-label="Close dialog">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body" id="bookmarksDialogBody">
+        <!-- Injected by JavaScript -->
+      </div>
+      <div class="dialog-actions">
+        <button class="md3-text-button" id="clearAllBookmarksBtn">Clear All</button>
+        <button class="md3-filled-button" id="doneBookmarksBtn">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Snackbar -->
+  <div class="md3-snackbar" id="appSnackbar" role="status" aria-live="polite">
+    <span class="snackbar-text" id="snackbarText">Action completed</span>
+  </div>
+
+  <script src="furosemide.js"></script>
+</body>
+</html>
