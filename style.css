@@ -1939,3 +1939,199 @@ body.dark-theme .quiz-option-btn.incorrect {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* --------------------------------------------------------------------------
+   21. Drug Directory & Landing Page Catalog Styles
+   -------------------------------------------------------------------------- */
+.drug-directory-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 680px) {
+  .drug-directory-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--shape-corner-xl);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard), border-color var(--transition-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.catalog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--md-elevation-2);
+  border-color: var(--md-sys-color-primary);
+}
+
+.catalog-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.catalog-drug-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--shape-corner-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.catalog-drug-icon.gtn-theme {
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+}
+
+.catalog-drug-icon.propofol-theme {
+  background: linear-gradient(135deg, #00897b, #26a69a);
+}
+
+.catalog-header-text {
+  flex: 1;
+  margin-left: 14px;
+}
+
+.catalog-drug-name {
+  font-family: var(--font-brand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+  line-height: 1.2;
+}
+
+.catalog-drug-alias {
+  font-size: 0.8rem;
+  color: var(--md-sys-color-outline);
+}
+
+.catalog-class-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--shape-corner-full);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  margin-top: 8px;
+}
+
+.catalog-summary-text {
+  font-size: 0.85rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin: 12px 0;
+  line-height: 1.45;
+}
+
+.catalog-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.catalog-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.catalog-feature-item .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--md-sys-color-primary);
+  flex-shrink: 0;
+}
+
+.catalog-action-row {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  padding: 8px 18px;
+  border-radius: var(--shape-corner-full);
+  font-family: var(--font-brand);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-standard);
+}
+
+.catalog-open-btn:hover {
+  filter: brightness(1.08);
+  text-decoration: none;
+  box-shadow: var(--md-elevation-1);
+}
+
+.catalog-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.tag-pill {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: var(--shape-corner-s);
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* Comparison Matrix Table */
+.matrix-card {
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  text-align: left;
+}
+
+.matrix-table th, .matrix-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.matrix-table th {
+  background-color: var(--md-sys-color-surface-container);
+  font-family: var(--font-brand);
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+}
+
+.matrix-table tr:hover td {
+  background-color: var(--md-sys-color-surface-container-low);
+}
+

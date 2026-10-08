@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Pharm 101: Glycerol trinitrate (GTN) - Emergency and Critical Care Pharmacology Reference Guide. Mobile-first Google Material web app.">
+  <meta name="theme-color" content="#1a73e8" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>GTN • Pharm 101 | Clinical Pharmacology Reference</title>
+
+  <!-- Google Fonts: Roboto & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="light-theme">
+  <!-- Google App Header -->
+  <header class="md3-app-bar" id="topAppBar">
+    <div class="app-bar-start">
+      <button class="md3-icon-button" id="menuButton" aria-label="Menu Navigation" title="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <a href="index.html" class="app-brand" style="text-decoration: none; color: inherit;">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined brand-glyph">medication</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Pharm 101</span>
+          <span class="brand-subtitle">Clinical Pharmacology</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Google Pill Search Bar -->
+    <div class="app-search-wrapper" id="searchWrapper">
+      <div class="search-box">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="search" id="searchInput" placeholder="Search GTN pharmacology, adverse effects, dosing..." aria-label="Search drug information" autocomplete="off">
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear search" style="display: none;">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="app-bar-end">
+      <button class="md3-icon-button" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+      </button>
+      <button class="md3-icon-button" id="bookmarkListBtn" aria-label="Saved Bookmarks" title="Saved items">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="badge-dot" id="bookmarkDot" style="display: none;"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filter Chips Bar (Google-style horizontal scrollable pill chips) -->
+  <nav class="md3-chip-bar" id="chipBar" aria-label="Category filters">
+    <div class="chip-scroller">
+      <button class="md3-chip active" data-filter="all">
+        <span class="material-symbols-outlined chip-icon">select_all</span>
+        <span class="chip-label">All</span>
+      </button>
+      <button class="md3-chip" data-filter="overview">
+        <span class="material-symbols-outlined chip-icon">info</span>
+        <span class="chip-label">Overview</span>
+      </button>
+      <button class="md3-chip" data-filter="pd">
+        <span class="material-symbols-outlined chip-icon">tune</span>
+        <span class="chip-label">Pharmacodynamics</span>
+      </button>
+      <button class="md3-chip" data-filter="pk">
+        <span class="material-symbols-outlined chip-icon">timer</span>
+        <span class="chip-label">Pharmacokinetics</span>
+      </button>
+      <button class="md3-chip" data-filter="indications">
+        <span class="material-symbols-outlined chip-icon">medical_services</span>
+        <span class="chip-label">Clinical Uses</span>
+      </button>
+      <button class="md3-chip" data-filter="adverse">
+        <span class="material-symbols-outlined chip-icon">report_problem</span>
+        <span class="chip-label">Adverse Effects</span>
+      </button>
+      <button class="md3-chip" data-filter="contraindications">
+        <span class="material-symbols-outlined chip-icon">block</span>
+        <span class="chip-label">Contraindications</span>
+      </button>
+      <button class="md3-chip" data-filter="tools">
+        <span class="material-symbols-outlined chip-icon">calculate</span>
+        <span class="chip-label">Tools & Safety</span>
+      </button>
+      <button class="md3-chip" data-filter="quiz">
+        <span class="material-symbols-outlined chip-icon">quiz</span>
+        <span class="chip-label">Quiz</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Side Navigation Drawer (for mobile & tablet toggle) -->
+  <aside class="md3-nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-header-brand">
+        <span class="material-symbols-outlined brand-glyph">ecg_heart</span>
+        <div>
+          <h3>Pharm 101</h3>
+          <p>Emergency & Critical Care</p>
+        </div>
+      </div>
+      <button class="md3-icon-button" id="closeDrawerBtn" aria-label="Close navigation drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section-title">DRUG DIRECTORY</div>
+      <a href="index.html" class="drawer-item">
+        <span class="material-symbols-outlined">grid_view</span>
+        <span>Drug Directory</span>
+      </a>
+      <a href="gtn.html" class="drawer-item active">
+        <span class="material-symbols-outlined">medication</span>
+        <span>GTN (Vasodilator)</span>
+      </a>
+      <a href="propofol.html" class="drawer-item">
+        <span class="material-symbols-outlined">vaccines</span>
+        <span>Propofol (IV Anaesthetic)</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">GTN SECTIONS</div>
+      <a href="#hero-section" class="drawer-item active" data-target="all">
+        <span class="material-symbols-outlined">home</span>
+        <span>Drug Summary</span>
+      </a>
+      <a href="#pd-section" class="drawer-item" data-target="pd">
+        <span class="material-symbols-outlined">science</span>
+        <span>Pharmacodynamics</span>
+      </a>
+      <a href="#pk-section" class="drawer-item" data-target="pk">
+        <span class="material-symbols-outlined">hourglass_top</span>
+        <span>Pharmacokinetics</span>
+      </a>
+      <a href="#indications-section" class="drawer-item" data-target="indications">
+        <span class="material-symbols-outlined">local_hospital</span>
+        <span>Clinical Indications</span>
+      </a>
+      <a href="#adverse-section" class="drawer-item" data-target="adverse">
+        <span class="material-symbols-outlined">warning</span>
+        <span>Adverse Effects</span>
+      </a>
+      <a href="#contraindications-section" class="drawer-item" data-target="contraindications">
+        <span class="material-symbols-outlined">do_not_disturb</span>
+        <span>Red Flags & Safety</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">CLINICAL INTERACTIVE TOOLS</div>
+      <a href="#safety-checker-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">shield</span>
+        <span>Red Flag Bedside Checker</span>
+      </a>
+      <a href="#tolerance-calculator-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">schedule</span>
+        <span>8h Nitrate Window Planner</span>
+      </a>
+      <a href="#quiz-section" class="drawer-item" data-target="quiz">
+        <span class="material-symbols-outlined">school</span>
+        <span>Pharm 101 Self-Quiz</span>
+      </a>
+    </div>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
+  <!-- Main Content Container (Mobile-first responsive layout) -->
+  <main class="md3-main-container" id="mainContainer">
+
+    <!-- Active Search Results Banner (Shown when searching) -->
+    <div class="search-status-banner" id="searchBanner" style="display: none;">
+      <span class="search-status-text">Showing results for "<strong id="searchQueryDisplay"></strong>"</span>
+      <button class="md3-text-button" id="resetSearchBtn">Reset</button>
+    </div>
+
+    <!-- 1. HERO / OVERVIEW CARD -->
+    <section class="card-section" id="hero-section" data-category="overview">
+      <div class="md3-card hero-card">
+        <div class="hero-header-row">
+          <div class="hero-chip-badge">
+            <span class="material-symbols-outlined">bolt</span>
+            <span>Clinical Pharmacology • Basic Science</span>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="hero" aria-label="Bookmark card" title="Save to bookmarks">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <h1 class="hero-title">Glycerol Trinitrate (GTN)</h1>
+        <p class="hero-subtitle">Also known as: <em>Nitroglycerin (NTG)</em> • 1,2,3-trinitroxypropane</p>
+
+        <!-- Quick Facts Pill Grid -->
+        <div class="quick-facts-grid">
+          <div class="fact-tile">
+            <span class="fact-label">DRUG CLASS</span>
+            <span class="fact-val highlight-blue">Vasodilator (Organic Nitrate)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">PRIMARY MECHANISM</span>
+            <span class="fact-val">NO Release &rarr; &uarr; cGMP &rarr; Relaxation</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">FIRST-PASS BIOAVAILABILITY</span>
+            <span class="fact-val">10% – 20% (Low)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">ELIMINATION HALF-LIFE</span>
+            <span class="fact-val">2 – 8 minutes</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">SUB-LINGUAL ONSET</span>
+            <span class="fact-val">1 – 3 minutes (Duration: 15–30 min)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">KEY PHENOMENON</span>
+            <span class="fact-val highlight-amber">Tachyphylaxis (Need 8h drug-free)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PHARMACODYNAMICS SECTION -->
+    <section class="card-section" id="pd-section" data-category="pd">
+      <div class="md3-card pd-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-blue">tune</span>
+            <div>
+              <h2 class="card-title">Pharmacodynamics (PD)</h2>
+              <p class="card-subhead">Cellular mechanism, vascular selectivity & myocardial workload reduction</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pd" aria-label="Bookmark Pharmacodynamics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Biochemical Pathway Stepper -->
+        <div class="pathway-container">
+          <div class="pathway-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Denitration in Vascular Smooth Muscle</strong>
+              <p>GTN is bioactivated enzymatically (mitochondrial aldehyde dehydrogenase ALDH2) releasing <strong>Nitric Oxide (NO)</strong>.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Soluble Guanylyl Cyclase (sGC) Activation</strong>
+              <p>NO activates sGC, increasing <strong>cyclic GMP (cGMP)</strong> synthesis from GTP.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Protein Kinase G (PKG) Cascade</strong>
+              <p>cGMP stimulates PKG &rarr; dephosphorylation of myosin light chains &rarr; reduction in intracellular Ca²⁺.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Smooth Muscle Relaxation & Vasodilation</strong>
+              <p>Prominent venodilation (low dose) followed by arteriolar dilation (high dose).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vascular Dilation Differential Comparison -->
+        <div class="dose-dynamics-box">
+          <div class="dose-column veno-col">
+            <div class="dose-header">
+              <span class="material-symbols-outlined">water_drop</span>
+              <h4>Low Dose / Concentration</h4>
+            </div>
+            <div class="dose-tag">Veins First (Venodilation)</div>
+            <ul class="clean-bullet-list">
+              <li><strong>Veins are affected first</strong> at lower concentrations due to higher enzymatic susceptibility.</li>
+              <li>Large venous capacitance pooling reduces <strong>cardiac venous return (preload)</strong>.</li>
+              <li>Decreases stroke volume without significant fall in systemic blood pressure.</li>
+              <li>Significantly lowers <strong>Left Ventricular (LV) end-diastolic volume</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="dose-column arterio-col">
+            <div class="dose-header">
+              <span class="material-symbols-outlined">speed</span>
+              <h4>Higher Dose / Concentration</h4>
+            </div>
+            <div class="dose-tag">Arterial Dilation</div>
+            <ul class="clean-bullet-list">
+              <li>Causes systemic arterial & arteriolar relaxation.</li>
+              <li><strong>Reduces Systemic Blood Pressure</strong> and afterload, decreasing Cardiac Output (CO) and myocardial workload.</li>
+              <li>Directly dilates <strong>large epicardial coronary arteries</strong>, relieving coronary spasm and improving collateral flow.</li>
+              <li>Decreases LV wall tension (Laplace: <em>T = P &times; r / 2h</em>), drastically lowering myocardial oxygen demand.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Key Clinical Pearl Box -->
+        <div class="pearl-callout">
+          <span class="material-symbols-outlined pearl-icon">lightbulb</span>
+          <div class="pearl-text">
+            <strong>Key Myocardial Mechanism:</strong> GTN decreases LV volume &rarr; decreases LV wall tension &rarr; subsequent substantial reduction in <em>myocardial oxygen consumption (MVO₂)</em>.
+            <div class="pearl-subtext">Note: GTN also inhibits platelet aggregation, but this is clinically insignificant compared to its hemodynamic effects.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PHARMACOKINETICS SECTION -->
+    <section class="card-section" id="pk-section" data-category="pk">
+      <div class="md3-card pk-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-teal">timer</span>
+            <div>
+              <h2 class="card-title">Pharmacokinetics (PK)</h2>
+              <p class="card-subhead">ADME, onset/duration of clinical formulations & tolerance</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pk" aria-label="Bookmark Pharmacokinetics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="metric-row">
+          <div class="metric-card">
+            <div class="metric-number">10–20%</div>
+            <div class="metric-title">Oral Bioavailability</div>
+            <div class="metric-desc">Near complete first-pass hepatic clearance; requires sublingual or IV route</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">2–8 min</div>
+            <div class="metric-title">Elimination Half-Life (t½)</div>
+            <div class="metric-desc">Extremely rapid clearance; allows tight IV infusion titration</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">1–3 min</div>
+            <div class="metric-title">Sublingual Onset</div>
+            <div class="metric-desc">Relief of acute angina; peak effect in 5 min, duration 15–30 min</div>
+          </div>
+        </div>
+
+        <!-- Metabolism and Route Details -->
+        <div class="info-block">
+          <h4 class="block-title">
+            <span class="material-symbols-outlined">metabolism</span>
+            Metabolism & Excretion
+          </h4>
+          <p>Extensively metabolized by hepatic glutathione-dependent organic nitrate reductase into <strong>1,2-glyceryl dinitrate</strong> and <strong>1,3-glyceryl dinitrate</strong>. The 1,2-dinitro derivative retains significant vasodilator activity. Inactive metabolites are excreted primarily by the <strong>kidneys</strong>.</p>
+        </div>
+
+        <!-- Tachyphylaxis / Tolerance Deep-Dive -->
+        <div class="tachyphylaxis-banner">
+          <div class="tachy-header">
+            <span class="material-symbols-outlined tachy-icon">history_toggle_off</span>
+            <div>
+              <h4>Tachyphylaxis (Nitrate Tolerance)</h4>
+              <p class="tachy-sub">Key Clinical & Bedside Concept</p>
+            </div>
+          </div>
+          <div class="tachy-body">
+            <p><strong>Cause:</strong> Rapid diminution of response with continuous nitrate exposure due to <strong>depletion of tissue sulfhydryl (-SH) groups</strong> in vascular smooth muscle, accompanied by neurohormonal activation and superoxide production.</p>
+            <p><strong>High Risk Scenarios:</strong> Continuous IV GTN infusions, round-the-clock transdermal patches, or frequent long-acting preparations.</p>
+            <div class="solution-pill">
+              <span class="material-symbols-outlined">check_circle</span>
+              <span><strong>The Solution:</strong> An intentional <strong>“Drug-free” interval of 8 hours</strong> between doses allows vascular sulfhydryl reserves to regenerate.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CLINICAL USES / INDICATIONS SECTION -->
+    <section class="card-section" id="indications-section" data-category="indications">
+      <div class="md3-card indications-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-indigo">medical_services</span>
+            <div>
+              <h2 class="card-title">Clinical Uses & Indications</h2>
+              <p class="card-subhead">Emergency and acute coronary care applications</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="indications" aria-label="Bookmark Indications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Grid of 5 Indications from Article -->
+        <div class="indications-grid">
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-red">
+              <span class="material-symbols-outlined">cardiology</span>
+            </div>
+            <div class="indication-info">
+              <h3>Angina Pectoris</h3>
+              <p>Acute relief and prophylaxis of stable, vasospastic (Prinzmetal), and effort-induced angina. Rapid relief via sublingual spray or tablet.</p>
+              <div class="mini-tag">1st Line Relief</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-orange">
+              <span class="material-symbols-outlined">ecg</span>
+            </div>
+            <div class="indication-info">
+              <h3>Acute Coronary Syndrome (ACS)</h3>
+              <p>Unstable angina and Non-STEMI / STEMI with ongoing ischemic discomfort. Reduces preload, LV wall stress, and increases collateral flow.</p>
+              <div class="mini-tag">Titrated IV / SL</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-blue">
+              <span class="material-symbols-outlined">lungs</span>
+            </div>
+            <div class="indication-info">
+              <h3>Acute Pulmonary Oedema (APO)</h3>
+              <p>Cardiogenic pulmonary edema and acute severe heart failure. Aggressive venodilation unloads the pulmonary circuit and reduces capillary wedge pressure.</p>
+              <div class="mini-tag">High-Dose Bolus / Infusion</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-purple">
+              <span class="material-symbols-outlined">speed</span>
+            </div>
+            <div class="indication-info">
+              <h3>Hypertensive Emergencies</h3>
+              <p>Severe blood pressure spikes with acute end-organ damage (e.g. hypertensive heart failure, encephalopathy, perioperative hypertension).</p>
+              <div class="mini-tag">Controlled Afterload Reduction</div>
+            </div>
+          </div>
+
+          <div class="indication-card full-span">
+            <div class="indication-icon-wrap bg-amber">
+              <span class="material-symbols-outlined">warning_amber</span>
+            </div>
+            <div class="indication-info">
+              <h3>Aortic Dissection (With Beta-Blockade)</h3>
+              <p>Used to lower blood pressure in Type A and Type B acute aortic dissection. <strong>CRITICAL RULE:</strong> Always co-administer or precede with adequate beta-blockade (e.g., labetalol, esmolol) to suppress reflex tachycardia and aortic shear stress (<em>dP/dt</em>).</p>
+              <div class="mini-tag warning">Requires Prior Beta-Blockade</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ADVERSE EFFECTS SECTION -->
+    <section class="card-section" id="adverse-section" data-category="adverse">
+      <div class="md3-card adverse-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-amber">report_problem</span>
+            <div>
+              <h2 class="card-title">Adverse Effects</h2>
+              <p class="card-subhead">Direct pharmacological extensions of vascular smooth muscle relaxation</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="adverse" aria-label="Bookmark Adverse Effects">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="adverse-list">
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Headache ("Nitrate Headache")</h4>
+              <p>Most common side effect (~50% of patients). Secondary to cerebral and meningeal arterial dilatation. Usually throbbing; often attenuates with continued therapy or responds to simple analgesia.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">airline_seat_recline_extra</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Postural / Orthostatic Hypotension</h4>
+              <p>Marked pooling of venous blood in capacitance vessels leads to sudden cerebral hypoperfusion upon standing. Advise patients to sit or lie down before sublingual administration.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">favorite</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Reflex Tachycardia</h4>
+              <p>Arterial pressure drop triggers sympathetic baroreceptor activation, increasing heart rate. Paradoxically increases myocardial oxygen demand if blood pressure drops excessively.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">opacity</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Salt and Water Retention</h4>
+              <p>Observed primarily with chronic longer-acting nitrate regimens. Mediated by compensatory renal renin-angiotensin-aldosterone axis activation in response to lower renal perfusion pressures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRECAUTIONS & CONTRAINDICATIONS SECTION -->
+    <section class="card-section" id="contraindications-section" data-category="contraindications">
+      <div class="md3-card danger-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-danger">do_not_disturb_on</span>
+            <div>
+              <h2 class="card-title">Precautions & Contraindications</h2>
+              <p class="card-subhead">Absolute red flags, preload dependency & fixed output states</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="contraindications" aria-label="Bookmark Contraindications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="danger-boxes-grid">
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">trending_down</span>
+              <h3>Hypotension</h3>
+            </div>
+            <p>Baseline systolic blood pressure &lt; 90 mmHg or drop &gt; 30 mmHg below patient baseline. Vasodilation further impairs coronary perfusion pressure (CPP = DBP - LVEDP).</p>
+          </div>
+
+          <div class="danger-box highlight-critical">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">crisis_alert</span>
+              <h3>Inferior / Posterior MI & RV Infarct</h3>
+            </div>
+            <p><strong>Crucial Red Flag!</strong> In right ventricular (RV) infarction, the non-compliant RV depends entirely on high right atrial venous preload to maintain cardiac output. GTN venodilation can induce profound, fatal circulatory collapse!</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">lock</span>
+              <h3>Fixed Cardiac Output States</h3>
+            </div>
+            <p>Severe Aortic Stenosis (AS), Mitral Stenosis, Cardiac Tamponade, or Hypertrophic Obstructive Cardiomyopathy (HOCM). Afterload reduction without stroke volume compensation leads to catastrophic hypotension.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">monitor_heart</span>
+              <h3>Significant Bradycardia or Tachycardia</h3>
+            </div>
+            <p>Heart rate &lt; 50 bpm (impairs stroke compensation) or severe tachycardia &gt; 100 bpm (shortens diastolic coronary filling time).</p>
+          </div>
+
+          <div class="danger-box full-span warning-alert">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">dangerous</span>
+              <h3>PDE-5 Inhibitor Co-Administration (High-Yield Clinical Pearl)</h3>
+            </div>
+            <p>Absolute contraindication if phosphodiesterase-5 inhibitors taken recently (<strong>sildenafil</strong> / <strong>vardenafil</strong> within 24 hours; <strong>tadalafil</strong> within 48 hours). Synergistic cGMP accumulation causes profound, refractory, and potentially fatal cardiovascular shock.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE TOOLS & CLINICAL DECISION SUPPORT -->
+    <section class="card-section" id="safety-checker-section" data-category="tools">
+      <div class="md3-card tools-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-green">shield</span>
+            <div>
+              <h2 class="card-title">Bedside GTN Safety & Red Flag Screener</h2>
+              <p class="card-subhead">Interactive decision support tool for acute emergency administration</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-intro">Check patient bedside parameters before initiating sublingual GTN or IV infusion:</p>
+
+        <form id="safetyCheckerForm" class="safety-form">
+          <div class="input-field-group">
+            <label for="sbpInput">Systolic Blood Pressure (SBP in mmHg)</label>
+            <div class="md3-text-field">
+              <input type="number" id="sbpInput" placeholder="e.g. 145" min="40" max="300" required>
+              <span class="unit-badge">mmHg</span>
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <label for="hrInput">Heart Rate (HR in bpm)</label>
+            <div class="md3-text-field">
+              <input type="number" id="hrInput" placeholder="e.g. 82" min="20" max="250" required>
+              <span class="unit-badge">bpm</span>
+            </div>
+          </div>
+
+          <div class="checkboxes-group">
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkRvInfarct">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Suspicion or ECG evidence of <strong>Inferior/RV Infarction</strong> (ST elevation in II, III, aVF or V4R)</span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkFixedCo">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Known <strong>Fixed Cardiac Output</strong> (Severe Aortic Stenosis, HOCM, Tamponade)</span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkPde5">
+              <span class="checkbox-box"></span>
+              <span class="check-text"><strong>PDE-5 Inhibitor ingestion</strong> (Sildenafil &lt;24h or Tadalafil &lt;48h)</span>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="md3-filled-button" id="evaluateSafetyBtn">
+              <span class="material-symbols-outlined">verified_user</span>
+              <span>Evaluate GTN Safety</span>
+            </button>
+            <button type="button" class="md3-outlined-button" id="resetSafetyBtn">Reset</button>
+          </div>
+        </form>
+
+        <div id="safetyResultBox" class="safety-result-box" style="display: none;">
+          <!-- Dynamically populated via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. 8-HOUR NITRATE TOLERANCE PLANNER -->
+    <section class="card-section" id="tolerance-calculator-section" data-category="tools">
+      <div class="md3-card tolerance-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-purple">schedule</span>
+            <div>
+              <h2 class="card-title">8-Hour Nitrate-Free Window Planner</h2>
+              <p class="card-subhead">Prevent vascular smooth muscle tachyphylaxis & sulfhydryl depletion</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-intro">Select the patient's schedule to compute optimal daily on/off intervals:</p>
+
+        <div class="calc-row">
+          <div class="calc-input">
+            <label for="patchApplyTime">Nitrate Start / Application Time:</label>
+            <input type="time" id="patchApplyTime" value="08:00" class="md3-time-input">
+          </div>
+          <button class="md3-tonal-button" id="calcScheduleBtn">
+            <span class="material-symbols-outlined">update</span>
+            <span>Compute Schedule</span>
+          </button>
+        </div>
+
+        <div class="schedule-output-card" id="scheduleOutput">
+          <div class="timeline-row">
+            <div class="timeline-chip active-period">
+              <span class="material-symbols-outlined">wb_sunny</span>
+              <div>
+                <strong>Active Nitrate Window (16 hours)</strong>
+                <p id="activePeriodText">08:00 &mdash; 00:00 (Midnight)</p>
+              </div>
+            </div>
+            <div class="timeline-chip free-period">
+              <span class="material-symbols-outlined">bedtime</span>
+              <div>
+                <strong>Nitrate-Free Interval (8 hours)</strong>
+                <p id="freePeriodText">00:00 (Midnight) &mdash; 08:00 (Next morning)</p>
+              </div>
+            </div>
+          </div>
+          <div class="rationale-note">
+            <span class="material-symbols-outlined">info</span>
+            <span>Allows regeneration of vascular thiol / sulfhydryl (-SH) stores so morning doses retain full vasodilation potency.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PHARM 101 KNOWLEDGE CHECK / QUIZ -->
+    <section class="card-section" id="quiz-section" data-category="quiz">
+      <div class="md3-card quiz-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-red">school</span>
+            <div>
+              <h2 class="card-title">Pharm 101 Self-Assessment Quiz</h2>
+              <p class="card-subhead">Test your knowledge with 5 clinical pharmacology questions</p>
+            </div>
+          </div>
+          <div class="quiz-score-badge" id="quizScoreBadge">Score: <span id="currentScore">0</span> / 5</div>
+        </div>
+
+        <div class="quiz-container" id="quizContainer">
+          <!-- Dynamically generated question cards -->
+        </div>
+
+        <div class="quiz-controls">
+          <button class="md3-filled-button" id="restartQuizBtn" style="display: none;">
+            <span class="material-symbols-outlined">replay</span>
+            <span>Restart Quiz</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Google Floating Action Button (FAB) -->
+  <button class="md3-fab" id="fabAction" aria-label="Quick Safety Check" title="Quick Bedside Safety Check">
+    <span class="material-symbols-outlined">shield</span>
+    <span class="fab-label">Safety Check</span>
+  </button>
+
+  <!-- Mobile Bottom Navigation Bar (Google Material 3 Standard) -->
+  <nav class="md3-bottom-nav" id="bottomNav" aria-label="Bottom mobile navigation">
+    <button class="nav-item active" data-nav="all">
+      <span class="material-symbols-outlined nav-icon">home</span>
+      <span class="nav-label">Summary</span>
+    </button>
+    <button class="nav-item" data-nav="pd">
+      <span class="material-symbols-outlined nav-icon">tune</span>
+      <span class="nav-label">Dynamics</span>
+    </button>
+    <button class="nav-item" data-nav="pk">
+      <span class="material-symbols-outlined nav-icon">timer</span>
+      <span class="nav-label">Kinetics</span>
+    </button>
+    <button class="nav-item" data-nav="contraindications">
+      <span class="material-symbols-outlined nav-icon">shield</span>
+      <span class="nav-label">Safety</span>
+    </button>
+    <button class="nav-item" data-nav="quiz">
+      <span class="material-symbols-outlined nav-icon">quiz</span>
+      <span class="nav-label">Quiz</span>
+    </button>
+  </nav>
+
+  <!-- Bookmarks Modal Dialog -->
+  <dialog class="md3-dialog" id="bookmarksDialog">
+    <div class="dialog-surface">
+      <div class="dialog-header">
+        <h3 class="dialog-title">Saved Drug Sections</h3>
+        <button class="md3-icon-button" id="closeBookmarksDialogBtn" aria-label="Close dialog">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body" id="bookmarksDialogBody">
+        <!-- Injected by JavaScript -->
+      </div>
+      <div class="dialog-actions">
+        <button class="md3-text-button" id="clearAllBookmarksBtn">Clear All</button>
+        <button class="md3-filled-button" id="doneBookmarksBtn">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Snackbar -->
+  <div class="md3-snackbar" id="appSnackbar" role="status" aria-live="polite">
+    <span class="snackbar-text" id="snackbarText">Action completed</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

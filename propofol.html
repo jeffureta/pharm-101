@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Pharm 101: Propofol - Emergency, Anaesthetic, and Critical Care Pharmacology Reference Guide. Mobile-first Google Material web app.">
+  <meta name="theme-color" content="#1a73e8" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Propofol • Pharm 101 | Clinical Pharmacology Reference</title>
+
+  <!-- Google Fonts: Roboto & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="light-theme" data-page="propofol">
+  <!-- Google App Header -->
+  <header class="md3-app-bar" id="topAppBar">
+    <div class="app-bar-start">
+      <button class="md3-icon-button" id="menuButton" aria-label="Menu Navigation" title="Menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <a href="index.html" class="app-brand" style="text-decoration: none; color: inherit;">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined brand-glyph">vaccines</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Pharm 101</span>
+          <span class="brand-subtitle">Clinical Pharmacology</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Google Pill Search Bar -->
+    <div class="app-search-wrapper" id="searchWrapper">
+      <div class="search-box">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="search" id="searchInput" placeholder="Search Propofol kinetics, dosing, PRIS, airway..." aria-label="Search drug information" autocomplete="off">
+        <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear search" style="display: none;">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="app-bar-end">
+      <button class="md3-icon-button" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+      </button>
+      <button class="md3-icon-button" id="bookmarkListBtn" aria-label="Saved Bookmarks" title="Saved items">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="badge-dot" id="bookmarkDot" style="display: none;"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filter Chips Bar (Google-style horizontal scrollable pill chips) -->
+  <nav class="md3-chip-bar" id="chipBar" aria-label="Category filters">
+    <div class="chip-scroller">
+      <button class="md3-chip active" data-filter="all">
+        <span class="material-symbols-outlined chip-icon">select_all</span>
+        <span class="chip-label">All</span>
+      </button>
+      <button class="md3-chip" data-filter="overview">
+        <span class="material-symbols-outlined chip-icon">info</span>
+        <span class="chip-label">Overview</span>
+      </button>
+      <button class="md3-chip" data-filter="pd">
+        <span class="material-symbols-outlined chip-icon">tune</span>
+        <span class="chip-label">Pharmacodynamics</span>
+      </button>
+      <button class="md3-chip" data-filter="pk">
+        <span class="material-symbols-outlined chip-icon">timer</span>
+        <span class="chip-label">Pharmacokinetics</span>
+      </button>
+      <button class="md3-chip" data-filter="indications">
+        <span class="material-symbols-outlined chip-icon">medical_services</span>
+        <span class="chip-label">Clinical Uses</span>
+      </button>
+      <button class="md3-chip" data-filter="adverse">
+        <span class="material-symbols-outlined chip-icon">report_problem</span>
+        <span class="chip-label">Adverse Effects</span>
+      </button>
+      <button class="md3-chip" data-filter="contraindications">
+        <span class="material-symbols-outlined chip-icon">block</span>
+        <span class="chip-label">Contraindications</span>
+      </button>
+      <button class="md3-chip" data-filter="tools">
+        <span class="material-symbols-outlined chip-icon">calculate</span>
+        <span class="chip-label">Dosing & Tools</span>
+      </button>
+      <button class="md3-chip" data-filter="quiz">
+        <span class="material-symbols-outlined chip-icon">quiz</span>
+        <span class="chip-label">Quiz</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Side Navigation Drawer -->
+  <aside class="md3-nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-header-brand">
+        <span class="material-symbols-outlined brand-glyph">vaccines</span>
+        <div>
+          <h3>Pharm 101</h3>
+          <p>Emergency & Critical Care</p>
+        </div>
+      </div>
+      <button class="md3-icon-button" id="closeDrawerBtn" aria-label="Close navigation drawer">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section-title">DRUG DIRECTORY</div>
+      <a href="index.html" class="drawer-item">
+        <span class="material-symbols-outlined">grid_view</span>
+        <span>Drug Directory</span>
+      </a>
+      <a href="gtn.html" class="drawer-item">
+        <span class="material-symbols-outlined">medication</span>
+        <span>GTN (Vasodilator)</span>
+      </a>
+      <a href="propofol.html" class="drawer-item active">
+        <span class="material-symbols-outlined">vaccines</span>
+        <span>Propofol (IV Anaesthetic)</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">PROPOFOL SECTIONS</div>
+      <a href="#hero-section" class="drawer-item active" data-target="all">
+        <span class="material-symbols-outlined">home</span>
+        <span>Drug Summary</span>
+      </a>
+      <a href="#pd-section" class="drawer-item" data-target="pd">
+        <span class="material-symbols-outlined">science</span>
+        <span>Pharmacodynamics</span>
+      </a>
+      <a href="#pk-section" class="drawer-item" data-target="pk">
+        <span class="material-symbols-outlined">hourglass_top</span>
+        <span>Pharmacokinetics</span>
+      </a>
+      <a href="#indications-section" class="drawer-item" data-target="indications">
+        <span class="material-symbols-outlined">local_hospital</span>
+        <span>Clinical Indications</span>
+      </a>
+      <a href="#adverse-section" class="drawer-item" data-target="adverse">
+        <span class="material-symbols-outlined">warning</span>
+        <span>Adverse Effects & PRIS</span>
+      </a>
+      <a href="#contraindications-section" class="drawer-item" data-target="contraindications">
+        <span class="material-symbols-outlined">do_not_disturb</span>
+        <span>Red Flags & Safety</span>
+      </a>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section-title">CLINICAL INTERACTIVE TOOLS</div>
+      <a href="#safety-checker-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">shield</span>
+        <span>Airway & PRIS Safety Screener</span>
+      </a>
+      <a href="#dosing-calculator-section" class="drawer-item" data-target="tools">
+        <span class="material-symbols-outlined">calculate</span>
+        <span>Weight-Based Dosing Tool</span>
+      </a>
+      <a href="#quiz-section" class="drawer-item" data-target="quiz">
+        <span class="material-symbols-outlined">school</span>
+        <span>Propofol Self-Quiz</span>
+      </a>
+    </div>
+  </aside>
+  <div class="drawer-scrim" id="drawerScrim"></div>
+
+  <!-- Main Content Container -->
+  <main class="md3-main-container" id="mainContainer">
+
+    <!-- Active Search Results Banner -->
+    <div class="search-status-banner" id="searchBanner" style="display: none;">
+      <span class="search-status-text">Showing results for "<strong id="searchQueryDisplay"></strong>"</span>
+      <button class="md3-text-button" id="resetSearchBtn">Reset</button>
+    </div>
+
+    <!-- 1. HERO / OVERVIEW CARD -->
+    <section class="card-section" id="hero-section" data-category="overview">
+      <div class="md3-card hero-card">
+        <div class="hero-header-row">
+          <div class="hero-chip-badge">
+            <span class="material-symbols-outlined">bolt</span>
+            <span>Clinical Pharmacology • Basic Science</span>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="hero" aria-label="Bookmark card" title="Save to bookmarks">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <h1 class="hero-title">Propofol</h1>
+        <p class="hero-subtitle">Also known as: <em>2,6-diisopropylphenol</em> • "Milk of Amnesia" • 1% Lipid Emulsion</p>
+
+        <!-- Quick Facts Pill Grid -->
+        <div class="quick-facts-grid">
+          <div class="fact-tile">
+            <span class="fact-label">DRUG CLASS</span>
+            <span class="fact-val highlight-blue">IV Anaesthetic / Sedative-Hypnotic</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">PRIMARY MECHANISM</span>
+            <span class="fact-val">GABA<sub>A</sub> Potentiation &rarr; &uarr; Cl⁻ Influx</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">IV ONSET OF ACTION</span>
+            <span class="fact-val">&lt; 30–45 seconds (1 circulation time)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">OFFSET MECHANISM</span>
+            <span class="fact-val">Rapid Redistribution (Brain &rarr; Muscle/Fat)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">CLINICAL DURATION</span>
+            <span class="fact-val">3 – 8 minutes (Distribution t½: 2–4 min)</span>
+          </div>
+          <div class="fact-tile">
+            <span class="fact-label">CRITICAL PEARL</span>
+            <span class="fact-val highlight-amber">NO Analgesic Effect (Needs Opioid)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PHARMACODYNAMICS SECTION -->
+    <section class="card-section" id="pd-section" data-category="pd">
+      <div class="md3-card pd-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-blue">tune</span>
+            <div>
+              <h2 class="card-title">Pharmacodynamics (PD)</h2>
+              <p class="card-subhead">Multiple organ system effects: CNS, Cardiovascular & Respiratory</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pd" aria-label="Bookmark Pharmacodynamics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Biochemical Pathway Stepper -->
+        <div class="pathway-container">
+          <div class="pathway-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>GABA<sub>A</sub> Receptor Allosteric Binding</strong>
+              <p>Propofol binds specifically to transmembrane domains on the &beta;-subunit of the ligand-gated <strong>GABA<sub>A</sub> receptor</strong> complex in the central nervous system.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Chloride Ion Channel Opening</strong>
+              <p>Significantly increases channel opening duration and potentiates endogenous GABA activity, driving massive intracellular <strong>chloride (Cl⁻) influx</strong>.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="pathway-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Neuronal Hyperpolarization & CNS Depression</strong>
+              <p>Hyperpolarizes post-synaptic neuronal membranes, creating widespread inhibition of cortical and subcortical neurotransmission, leading to rapid hypnosis and amnesia.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organ-System Effects Grid -->
+        <div class="dose-dynamics-box">
+          <div class="dose-column veno-col">
+            <div class="dose-header">
+              <span class="material-symbols-outlined">psychology</span>
+              <h4>Central Nervous System (CNS)</h4>
+            </div>
+            <div class="dose-tag">Hypnotic & Anticonvulsant</div>
+            <ul class="clean-bullet-list">
+              <li><strong>Profound Hypnosis:</strong> Smooth and rapid loss of consciousness within 30–45 seconds.</li>
+              <li><strong>Potent Anticonvulsant:</strong> Terminates status epilepticus refractory to benzodiazepines.</li>
+              <li><strong>Decreases ICP:</strong> Lowers both Cerebral Metabolic Rate ($CMRO_2$) and Cerebral Blood Flow ($CBF$).</li>
+              <li><strong style="color: #b3261e;">NO ANALGESIC EFFECT:</strong> Does NOT provide any pain relief. Must always co-administer analgesics (e.g., fentanyl, ketamine) for painful procedures.</li>
+            </ul>
+          </div>
+
+          <div class="dose-column arterio-col">
+            <div class="dose-header">
+              <span class="material-symbols-outlined">favorite</span>
+              <h4>Cardiovascular System</h4>
+            </div>
+            <div class="dose-tag">Preload & Afterload Drop</div>
+            <ul class="clean-bullet-list">
+              <li><strong>Marked Hypotension:</strong> Decreases both preload (venodilation) and afterload (arteriolar relaxation).</li>
+              <li><strong>Negative Inotropic Action:</strong> Directly suppresses myocardial contractility.</li>
+              <li><strong>Exaggerated in Hypovolemia & Elderly:</strong> Profound SBP drops occur in shocked or volume-depleted patients.</li>
+              <li><strong>Blunted Baroreceptors:</strong> Inhibits baroreceptor response, so reflex tachycardia is noticeably blunted.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Respiratory & Other Effects -->
+        <div class="info-block" style="margin-top: 12px;">
+          <h4 class="block-title">
+            <span class="material-symbols-outlined">lungs</span>
+            Respiratory & Secondary Effects
+          </h4>
+          <p><strong>Respiratory Depression:</strong> Dose-related central depression of respiratory drive. Markedly decreases respiratory rate and blunts ventilatory response to hypercapnia and hypoxia. Causes significant reduction in tidal volume and loss of protective pharyngeal/laryngeal airway reflexes. <strong>Transient apnea</strong> occurs in > 50% of induction doses.</p>
+          <p style="margin-top: 6px;"><strong>Anti-Emetic Action:</strong> Unique among general anaesthetics, propofol has direct anti-emetic properties even at sub-hypnotic doses ($10–20\text{ mg}$), mediated via dopamine and 5-HT<sub>3</sub> pathway modulation in the chemoreceptor trigger zone.</p>
+        </div>
+
+        <!-- Key Clinical Pearl Box -->
+        <div class="pearl-callout">
+          <span class="material-symbols-outlined pearl-icon">lightbulb</span>
+          <div class="pearl-text">
+            <strong>Key Emergency Pearl:</strong> Propofol produces rapid, deep hypnosis but has <em>zero analgesic activity</em>. Procedural sedation without appropriate analgesia will result in purposeful patient movement, tachycardia, and hypertension in response to painful stimuli despite deep sedation.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PHARMACOKINETICS SECTION -->
+    <section class="card-section" id="pk-section" data-category="pk">
+      <div class="md3-card pk-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-teal">timer</span>
+            <div>
+              <h2 class="card-title">Pharmacokinetics (PK)</h2>
+              <p class="card-subhead">Redistribution mechanics, hepatic and extra-hepatic clearance</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="pk" aria-label="Bookmark Pharmacokinetics">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="metric-row">
+          <div class="metric-card">
+            <div class="metric-number">2–4 min</div>
+            <div class="metric-title">Distribution Half-Life (t½α)</div>
+            <div class="metric-desc">Rapid shift out of vessel-rich brain tissue terminates single bolus effect</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">4–23 min</div>
+            <div class="metric-title">Elimination Half-Life (t½β)</div>
+            <div class="metric-desc">Initial metabolic elimination; terminal t½ can extend with prolonged infusions</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">3–8 min</div>
+            <div class="metric-title">Clinical Duration of Action</div>
+            <div class="metric-desc">Ideal for rapid awakening in brief emergency procedural sedations</div>
+          </div>
+        </div>
+
+        <!-- Redistribution Concept Deep-Dive -->
+        <div class="tachyphylaxis-banner" style="background-color: #e0f2f1; border-color: #80cbc4;">
+          <div class="tachy-header">
+            <span class="material-symbols-outlined tachy-icon" style="color: #00796b;">swap_horiz</span>
+            <div>
+              <h4 style="color: #004d40;">The Cardinal Kinetic Rule: Redistribution vs Metabolism</h4>
+              <p class="tachy-sub" style="color: #00796b;">Why patients wake up in under 10 minutes</p>
+            </div>
+          </div>
+          <div class="tachy-body">
+            <p>Following an intravenous bolus, propofol rapidly equilibrates across the blood-brain barrier into the vessel-rich central nervous system within 30 seconds due to its high lipophilicity.</p>
+            <p><strong>Waking up is NOT due to rapid hepatic breakdown:</strong> Patient awakening after a single dose is driven primarily by <strong>rapid redistribution</strong> down concentration gradients from the brain into poorly perfused peripheral compartments (skeletal muscle and adipose tissue).</p>
+            <div class="solution-pill" style="border-color: #80cbc4;">
+              <span class="material-symbols-outlined" style="color: #00796b;">info</span>
+              <span><strong>Context-Sensitive Half-Time (CSHT):</strong> With prolonged continuous infusions (> 48h), peripheral tissues become saturated, and awakening becomes dependent on slow metabolic elimination, prolonging emergence time.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metabolism and Clearance Details -->
+        <div class="info-block" style="margin-top: 14px;">
+          <h4 class="block-title">
+            <span class="material-symbols-outlined">metabolism</span>
+            Metabolism & Extra-Hepatic (Pulmonary) Clearance
+          </h4>
+          <p>Propofol undergoes extensive and rapid clearance in the liver via glucuronidation (UGT1A9) and CYP2B6/2C9 hydroxylation to inactive water-soluble quinols. <strong>Key Clinical Anomaly:</strong> Propofol’s total body clearance ($1.5–2.2\text{ L/min}$) <em>exceeds normal hepatic blood flow</em> ($1.2\text{ L/min}$), providing definitive proof of significant <strong>extra-hepatic metabolism in the lungs</strong>. Metabolites are excreted renally (< 1% unchanged).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CLINICAL USES / INDICATIONS SECTION -->
+    <section class="card-section" id="indications-section" data-category="indications">
+      <div class="md3-card indications-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-indigo">medical_services</span>
+            <div>
+              <h2 class="card-title">Clinical Uses & Indications</h2>
+              <p class="card-subhead">Emergency procedural sedation, RSI induction, and ICU maintenance</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="indications" aria-label="Bookmark Indications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="indications-grid">
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-blue">
+              <span class="material-symbols-outlined">timer</span>
+            </div>
+            <div class="indication-info">
+              <h3>Procedural Sedation</h3>
+              <p>Emergency department reductions (dislocated shoulder, fractures), synchronized electrical cardioversion, and endoscopy. Rapid onset and crystal-clear emergence.</p>
+              <div class="mini-tag">0.5 – 1.0 mg/kg Slow Bolus</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-icon-wrap bg-red">
+              <span class="material-symbols-outlined">airline_seat_flat</span>
+            </div>
+            <div class="indication-info">
+              <h3>Adult Rapid Sequence Induction (RSI)</h3>
+              <p>Standard induction agent for endotracheal intubation in hemodynamically stable patients. Rapidly abolishes laryngeal and pharyngeal reflexes.</p>
+              <div class="mini-tag">1.0 – 2.5 mg/kg IV</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-info">
+              <div class="indication-icon-wrap bg-orange" style="float: left; margin-right: 12px;">
+                <span class="material-symbols-outlined">child_care</span>
+              </div>
+              <h3>Pediatric Anaesthesia Induction</h3>
+              <p>Higher doses are required in infants and children due to larger volume of distribution ($V_d$) and elevated weight-normalized clearance rates.</p>
+              <div class="mini-tag">2.5 – 3.5 mg/kg IV</div>
+            </div>
+          </div>
+
+          <div class="indication-card">
+            <div class="indication-info">
+              <div class="indication-icon-wrap bg-purple" style="float: left; margin-right: 12px;">
+                <span class="material-symbols-outlined">monitor_heart</span>
+              </div>
+              <h3>Maintenance of Anaesthesia / TIVA</h3>
+              <p>Total Intravenous Anaesthesia (TIVA) using target-controlled infusions (TCI) or continuous infusion pumps for surgical operations and ventilator tolerance.</p>
+              <div class="mini-tag">4 – 12 mg/kg/h Titrated</div>
+            </div>
+          </div>
+
+          <div class="indication-card full-span">
+            <div class="indication-icon-wrap bg-amber">
+              <span class="material-symbols-outlined">elderly</span>
+            </div>
+            <div class="indication-info">
+              <h3>Elderly & Shock Dosing Adjustment</h3>
+              <p>In patients over 65 years or those with volume depletion, reduce induction doses by <strong>50%–70%</strong> ($0.5–1.0\text{ mg/kg}$ slowly) to prevent sudden profound cardiovascular collapse. Always optimize intravascular volume first.</p>
+              <div class="mini-tag warning">Dose Reduction Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ADVERSE EFFECTS SECTION -->
+    <section class="card-section" id="adverse-section" data-category="adverse">
+      <div class="md3-card adverse-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-amber">report_problem</span>
+            <div>
+              <h2 class="card-title">Adverse Effects & PRIS</h2>
+              <p class="card-subhead">Direct pharmacological consequences and high-risk infusion syndromes</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="adverse" aria-label="Bookmark Adverse Effects">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="adverse-list">
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">trending_down</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Systemic Hypotension</h4>
+              <p>Direct myocardial depression combined with arterial and venous vasodilation. SBP drops by 20%–40% in standard inductions, significantly intensified by baseline dehydration or elderly age.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">air</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Apnea & Airway Obstruction</h4>
+              <p>Abolition of upper airway tone and profound depression of the medullary respiratory center. Risk of severe hypoxia and pulmonary aspiration if airway is unprotected.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item">
+            <div class="adverse-icon-col">
+              <span class="material-symbols-outlined">front_hand</span>
+            </div>
+            <div class="adverse-detail">
+              <h4>Severe Pain on Injection</h4>
+              <p>Reported in 30%–70% of peripheral injections due to irritation by the aqueous phase lipid emulsion. Mitigated by using larger antecubital veins, co-administering IV lidocaine ($1\text{ mg/kg}$), or cold saline flush.</p>
+            </div>
+          </div>
+
+          <div class="adverse-item" style="border-left-color: #d93025;">
+            <div class="adverse-icon-col" style="color: #d93025;">
+              <span class="material-symbols-outlined">warning</span>
+            </div>
+            <div class="adverse-detail">
+              <h4 style="color: #d93025;">Propofol Infusion Syndrome (PRIS)</h4>
+              <p>A potentially fatal mitochondrial toxic syndrome seen with prolonged (> 48h) or high-dose (> $4–5\text{ mg/kg/h}$) infusions. Characterized by <strong>refractory metabolic acidosis, rhabdomyolysis, hyperkalemia, hepatomegaly, acute renal failure, and refractory bradyarrhythmias / cardiac arrest</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRECAUTIONS & CONTRAINDICATIONS SECTION -->
+    <section class="card-section" id="contraindications-section" data-category="contraindications">
+      <div class="md3-card danger-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-danger">do_not_disturb_on</span>
+            <div>
+              <h2 class="card-title">Precautions & Contraindications</h2>
+              <p class="card-subhead">Severe red flags, hemodynamic collapse & unmonitored airways</p>
+            </div>
+          </div>
+          <button class="md3-icon-button bookmark-card-btn" data-card-id="contraindications" aria-label="Bookmark Contraindications">
+            <span class="material-symbols-outlined">bookmark_border</span>
+          </button>
+        </div>
+
+        <div class="danger-boxes-grid">
+          <div class="danger-box highlight-critical">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">crisis_alert</span>
+              <h3>Severe Hemodynamic Instability / Shock</h3>
+            </div>
+            <p><strong>Crucial Red Flag!</strong> In uncorrected hypovolemic, septic, or cardiogenic shock, sympathetic tone is the only factor maintaining organ perfusion. Propofol-induced sympatholysis and direct venodilation precipitate rapid cardiac arrest.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">air</span>
+              <h3>Unmonitored / Insecure Airway</h3>
+            </div>
+            <p>Propofol must NEVER be administered without immediate access to advanced airway equipment (bag-valve-mask, suction, endotracheal intubation, capnography) and personnel certified in airway rescue.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">lock</span>
+              <h3>Fixed Cardiac Output States</h3>
+            </div>
+            <p>Severe Aortic Stenosis, severe Mitral Stenosis, or Obstructive Cardiomyopathy. Sudden afterload collapse without compensatory stroke volume augmentation causes severe coronary hypoperfusion.</p>
+          </div>
+
+          <div class="danger-box">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">egg</span>
+              <h3>Egg & Soybean Allergy Cross-Reactivity</h3>
+            </div>
+            <p>Formulation contains 10% soybean oil and 1.2% purified egg phospholipid (lecithin). Absolute contraindication in patients with severe true anaphylaxis to egg or soy products (note: most egg allergies are to egg white albumin, not yolk lecithin, but caution is mandatory).</p>
+          </div>
+
+          <div class="danger-box full-span warning-alert">
+            <div class="danger-header">
+              <span class="material-symbols-outlined">warning</span>
+              <h3>Elderly & Frail Patients (Marked Dose Sensitivity)</h3>
+            </div>
+            <p>Volume of distribution is reduced and central nervous system sensitivity is heightened. Reduce induction dose by 50%–70% and inject slowly over 60 seconds to avoid dramatic hypotensive precipitancy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE BED-SIDE SAFETY & PRIS SCREENER -->
+    <section class="card-section" id="safety-checker-section" data-category="tools">
+      <div class="md3-card tools-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-green">shield</span>
+            <div>
+              <h2 class="card-title">Bedside Propofol Safety & Airway Screener</h2>
+              <p class="card-subhead">Interactive risk evaluation for acute procedural sedation & RSI</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-intro">Check patient bedside parameters before administering propofol bolus or infusion:</p>
+
+        <form id="propofolSafetyForm" class="safety-form">
+          <div class="input-field-group">
+            <label for="pSbpInput">Systolic Blood Pressure (SBP in mmHg)</label>
+            <div class="md3-text-field">
+              <input type="number" id="pSbpInput" placeholder="e.g. 120" min="40" max="260" required>
+              <span class="unit-badge">mmHg</span>
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <label for="pShockIndexInput">Heart Rate (HR in bpm)</label>
+            <div class="md3-text-field">
+              <input type="number" id="pHrInput" placeholder="e.g. 75" min="20" max="220" required>
+              <span class="unit-badge">bpm</span>
+            </div>
+          </div>
+
+          <div class="checkboxes-group">
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkAirwayReady">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Airway resuscitation equipment, BVM, suction, and capnography <strong>present and verified</strong></span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkHypovolemia">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Active <strong>severe hypovolemia, hemorrhage, or septic shock</strong></span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkElderlyFrail">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Patient is <strong>elderly (&ge;65 yrs) or severely frail</strong></span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkEggSoyAllergy">
+              <span class="checkbox-box"></span>
+              <span class="check-text">History of <strong>severe anaphylaxis to egg or soy products</strong></span>
+            </label>
+
+            <label class="md3-checkbox-label">
+              <input type="checkbox" id="checkPrisRisk">
+              <span class="checkbox-box"></span>
+              <span class="check-text">Continuous infusion scheduled for <strong>&gt; 48 hours or &gt; 4–5 mg/kg/h (PRIS risk)</strong></span>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="md3-filled-button" id="evalPropofolSafetyBtn">
+              <span class="material-symbols-outlined">verified_user</span>
+              <span>Evaluate Safety</span>
+            </button>
+            <button type="button" class="md3-outlined-button" id="resetPropofolSafetyBtn">Reset</button>
+          </div>
+        </form>
+
+        <div id="propofolSafetyResultBox" class="safety-result-box" style="display: none;">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. WEIGHT-BASED DOSING CALCULATOR -->
+    <section class="card-section" id="dosing-calculator-section" data-category="tools">
+      <div class="md3-card tolerance-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-purple">calculate</span>
+            <div>
+              <h2 class="card-title">Weight-Based Propofol Dosing Calculator</h2>
+              <p class="card-subhead">Rapid emergency calculation for standard 1% (10 mg/mL) formulation</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-intro">Enter patient weight and clinical indication to determine initial bolus dose and volume:</p>
+
+        <div class="calc-row">
+          <div class="calc-input">
+            <label for="patientWeight">Patient Weight (kg):</label>
+            <input type="number" id="patientWeight" value="70" min="5" max="250" class="md3-time-input" style="width: 140px;">
+          </div>
+          <div class="calc-input">
+            <label for="dosingIndication">Indication / Protocol:</label>
+            <select id="dosingIndication" class="md3-time-input" style="width: 220px; font-size: 0.88rem;">
+              <option value="sedation">Procedural Sedation (0.5–1.0 mg/kg)</option>
+              <option value="adult-rsi" selected>Adult RSI Induction (1.5–2.5 mg/kg)</option>
+              <option value="elderly-rsi">Elderly / Shock Induction (0.5–1.0 mg/kg)</option>
+              <option value="peds-rsi">Pediatric RSI Induction (2.5–3.5 mg/kg)</option>
+            </select>
+          </div>
+          <button class="md3-tonal-button" id="calcDoseBtn">
+            <span class="material-symbols-outlined">calculate</span>
+            <span>Calculate</span>
+          </button>
+        </div>
+
+        <div class="schedule-output-card" id="doseOutputCard">
+          <div class="timeline-row">
+            <div class="timeline-chip active-period">
+              <span class="material-symbols-outlined">medication</span>
+              <div>
+                <strong>Recommended Dose (mg)</strong>
+                <p id="doseMgText">105 – 175 mg</p>
+              </div>
+            </div>
+            <div class="timeline-chip free-period">
+              <span class="material-symbols-outlined">colorize</span>
+              <div>
+                <strong>Volume 1% Formulation (10 mg/mL)</strong>
+                <p id="doseMlText">10.5 – 17.5 mL</p>
+              </div>
+            </div>
+          </div>
+          <div class="rationale-note">
+            <span class="material-symbols-outlined">info</span>
+            <span id="doseClinicalTip">Standard healthy adult RSI dose. Titrate slowly over 30–60 seconds while monitoring blood pressure and SpO2.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. PROPOFOL PHARM 101 SELF-ASSESSMENT QUIZ -->
+    <section class="card-section" id="quiz-section" data-category="quiz">
+      <div class="md3-card quiz-card">
+        <div class="card-top-bar">
+          <div class="card-heading-group">
+            <span class="material-symbols-outlined section-icon color-red">school</span>
+            <div>
+              <h2 class="card-title">Pharm 101 Self-Assessment Quiz</h2>
+              <p class="card-subhead">Test your knowledge with 5 clinical pharmacology questions</p>
+            </div>
+          </div>
+          <div class="quiz-score-badge" id="quizScoreBadge">Score: <span id="currentScore">0</span> / 5</div>
+        </div>
+
+        <div class="quiz-container" id="quizContainer">
+          <!-- Dynamically populated via JavaScript -->
+        </div>
+
+        <div class="quiz-controls">
+          <button class="md3-filled-button" id="restartQuizBtn" style="display: none;">
+            <span class="material-symbols-outlined">replay</span>
+            <span>Restart Quiz</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Google Floating Action Button (FAB) -->
+  <button class="md3-fab" id="fabAction" aria-label="Dosing Calculator" title="Quick Dosing Tool">
+    <span class="material-symbols-outlined">calculate</span>
+    <span class="fab-label">Dosing Tool</span>
+  </button>
+
+  <!-- Mobile Bottom Navigation Bar (Google Material 3 Standard) -->
+  <nav class="md3-bottom-nav" id="bottomNav" aria-label="Bottom mobile navigation">
+    <button class="nav-item active" data-nav="all">
+      <span class="material-symbols-outlined nav-icon">home</span>
+      <span class="nav-label">Summary</span>
+    </button>
+    <button class="nav-item" data-nav="pd">
+      <span class="material-symbols-outlined nav-icon">tune</span>
+      <span class="nav-label">Dynamics</span>
+    </button>
+    <button class="nav-item" data-nav="pk">
+      <span class="material-symbols-outlined nav-icon">timer</span>
+      <span class="nav-label">Kinetics</span>
+    </button>
+    <button class="nav-item" data-nav="contraindications">
+      <span class="material-symbols-outlined nav-icon">shield</span>
+      <span class="nav-label">Safety</span>
+    </button>
+    <button class="nav-item" data-nav="quiz">
+      <span class="material-symbols-outlined nav-icon">quiz</span>
+      <span class="nav-label">Quiz</span>
+    </button>
+  </nav>
+
+  <!-- Bookmarks Modal Dialog -->
+  <dialog class="md3-dialog" id="bookmarksDialog">
+    <div class="dialog-surface">
+      <div class="dialog-header">
+        <h3 class="dialog-title">Saved Propofol Sections</h3>
+        <button class="md3-icon-button" id="closeBookmarksDialogBtn" aria-label="Close dialog">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="dialog-body" id="bookmarksDialogBody">
+        <!-- Injected by JavaScript -->
+      </div>
+      <div class="dialog-actions">
+        <button class="md3-text-button" id="clearAllBookmarksBtn">Clear All</button>
+        <button class="md3-filled-button" id="doneBookmarksBtn">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Snackbar -->
+  <div class="md3-snackbar" id="appSnackbar" role="status" aria-live="polite">
+    <span class="snackbar-text" id="snackbarText">Action completed</span>
+  </div>
+
+  <script src="propofol.js"></script>
+</body>
+</html>
